@@ -1,120 +1,438 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>My Portfolio</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Personal Portfolio | Glassmorphism UI</title>
   <style>
-    body {
+    /* Reset & Base Styles */
+    * {
       margin: 0;
-      font-family: 'Poppins', sans-serif;
-      background: linear-gradient(135deg, #89f7fe, #66a6ff);
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
       min-height: 100vh;
+      background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 40%, #311042 100%);
+      color: #f8fafc;
+      line-height: 1.6;
+      padding: 2rem 1rem;
+      position: relative;
+      overflow-x: hidden;
     }
 
+    /* Vibrant Background Orbs for Glassmorphism Effect */
+    body::before,
+    body::after {
+      content: '';
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(90px);
+      z-index: -1;
+    }
+
+    body::before {
+      width: 350px;
+      height: 350px;
+      background: rgba(168, 85, 247, 0.4);
+      top: 10%;
+      left: 15%;
+    }
+
+    body::after {
+      width: 400px;
+      height: 400px;
+      background: rgba(59, 130, 246, 0.35);
+      bottom: 10%;
+      right: 15%;
+    }
+
+    /* Container */
     .container {
-      width: 80%;
-      max-width: 900px;
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 20px;
-      backdrop-filter: blur(10px);
-      box-shadow: 0 8px 32px rgba(0,0,0,0.2);
-      padding: 40px;
-      color: #fff;
-    }
-
-    h1, h2 {
-      text-align: center;
-      margin-bottom: 20px;
-    }
-
-    .section {
-      margin-bottom: 30px;
-    }
-
-    .card {
-      background: rgba(255, 255, 255, 0.15);
-      border-radius: 15px;
-      padding: 20px;
-      margin: 10px 0;
-      transition: transform 0.3s ease;
-    }
-
-    .card:hover {
-      transform: translateY(-5px);
-    }
-
-    .skills {
+      max-width: 1100px;
+      margin: 0 auto;
       display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      justify-content: center;
+      flex-direction: column;
+      gap: 2rem;
     }
 
-    .skill {
-      background: rgba(255, 255, 255, 0.2);
-      padding: 10px 20px;
-      border-radius: 30px;
-      font-size: 14px;
+    /* Base Glass Card Styles */
+    .glass-card {
+      background: rgba(255, 255, 255, 0.07);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 20px;
+      padding: 2.5rem;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+      transition: transform 0.3s ease, border-color 0.3s ease;
     }
 
-    .contact {
-      text-align: center;
+    /* Navigation */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.2rem 2.5rem;
     }
 
-    a {
-      color: #fff;
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 700;
+      background: linear-gradient(90deg, #c084fc, #60a5fa);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: #cbd5e1;
       text-decoration: none;
-      font-weight: bold;
+      font-weight: 500;
+      transition: color 0.3s ease;
     }
 
-    a:hover {
+    .nav-links a:hover {
+      color: #ffffff;
+    }
+
+    /* Hero Section */
+    .hero {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+      min-height: 380px;
+    }
+
+    .hero-content {
+      max-width: 600px;
+    }
+
+    .hero-content h1 {
+      font-size: 3rem;
+      font-weight: 800;
+      line-height: 1.2;
+      margin-bottom: 0.8rem;
+    }
+
+    .hero-content h1 span {
+      background: linear-gradient(90deg, #38bdf8, #818cf8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-content p {
+      font-size: 1.1rem;
+      color: #94a3b8;
+      margin-bottom: 1.8rem;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 0.8rem 1.8rem;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      border: none;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #a855f7 0%, #6366f1 100%);
+      color: #ffffff;
+      box-shadow: 0 8px 20px rgba(168, 85, 247, 0.3);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 25px rgba(168, 85, 247, 0.45);
+    }
+
+    .avatar-frame {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.1);
+      border: 2px solid rgba(255, 255, 255, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 4rem;
+      box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.1);
+    }
+
+    /* Section Headings */
+    .section-title {
+      font-size: 1.8rem;
+      margin-bottom: 1.5rem;
+      font-weight: 700;
+      position: relative;
+    }
+
+    .section-title::after {
+      content: '';
+      display: block;
+      width: 50px;
+      height: 4px;
+      background: #a855f7;
+      border-radius: 2px;
+      margin-top: 6px;
+    }
+
+    /* Skills Grid */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      gap: 1rem;
+    }
+
+    .skill-card {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      padding: 1rem;
+      text-align: center;
+      font-weight: 600;
+      color: #e2e8f0;
+      transition: all 0.3s ease;
+    }
+
+    .skill-card:hover {
+      background: rgba(255, 255, 255, 0.12);
+      transform: translateY(-3px);
+      border-color: rgba(255, 255, 255, 0.3);
+    }
+
+    /* Projects Section */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .project-card {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 16px;
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: all 0.3s ease;
+    }
+
+    .project-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(168, 85, 247, 0.4);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    .project-card h3 {
+      margin-bottom: 0.5rem;
+      color: #f1f5f9;
+    }
+
+    .project-card p {
+      color: #94a3b8;
+      font-size: 0.95rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .project-tags {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      margin-bottom: 1rem;
+    }
+
+    .tag {
+      font-size: 0.75rem;
+      padding: 0.3rem 0.7rem;
+      border-radius: 20px;
+      background: rgba(168, 85, 247, 0.2);
+      color: #d8b4fe;
+      border: 1px solid rgba(168, 85, 247, 0.3);
+    }
+
+    .project-link {
+      color: #38bdf8;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+
+    .project-link:hover {
       text-decoration: underline;
+    }
+
+    /* Contact Form */
+    .form-group {
+      margin-bottom: 1.2rem;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 0.4rem;
+      color: #cbd5e1;
+      font-size: 0.9rem;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 0.8rem 1rem;
+      border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      background: rgba(255, 255, 255, 0.05);
+      color: #ffffff;
+      outline: none;
+      transition: border-color 0.3s ease;
+    }
+
+    .form-control:focus {
+      border-color: #a855f7;
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    textarea.form-control {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .hero {
+        flex-direction: column-reverse;
+        text-align: center;
+      }
+      
+      .hero-content h1 {
+        font-size: 2.2rem;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .section-title::after {
+        margin: 6px auto 0 auto;
+      }
     }
   </style>
 </head>
 <body>
+
   <div class="container">
-    <h1>✨ My Portfolio ✨</h1>
-    <p style="text-align:center;">Welcome to my personal portfolio built with Glassmorphism UI</p>
 
-    <div class="section">
-      <h2>About Me</h2>
-      <div class="card">
-        <p>Hello! I'm CHARAN, a passionate learner exploring programming and design. I enjoy building creative projects and solving problems with code.</p>
-      </div>
-    </div>
+    <!-- Header / Navbar -->
+    <nav class="glass-card">
+      <div class="logo">Alex.dev</div>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
 
-    <div class="section">
-      <h2>Projects</h2>
-      <div class="card">
-        <h3>Portfolio Website</h3>
-        <p>A responsive portfolio using glassmorphism design.</p>
+    <!-- Hero Section -->
+    <section class="glass-card hero" id="about">
+      <div class="hero-content">
+        <h1>Building <span>Digital Experiences</span> with Precision</h1>
+        <p>I'm a full-stack developer passionate about creating clean, modern web applications with beautiful interfaces and robust architectures.</p>
+        <a href="#contact" class="btn btn-primary">Get In Touch</a>
       </div>
-      <div class="card">
-        <h3>Birthday Wishes Page</h3>
-        <p>A fun HTML page with glowing text and animations.</p>
+      <div class="avatar-frame">
+        🚀
       </div>
-    </div>
+    </section>
 
-    <div class="section">
-      <h2>Skills</h2>
-      <div class="skills">
-        <div class="skill">HTML</div>
-        <div class="skill">CSS</div>
-        <div class="skill">JavaScript</div>
-        <div class="skill">C Programming</div>
-        <div class="skill">Python Basics</div>
+    <!-- Skills Section -->
+    <section class="glass-card" id="skills">
+      <h2 class="section-title">Core Skills</h2>
+      <div class="skills-grid">
+        <div class="skill-card">JavaScript</div>
+        <div class="skill-card">TypeScript</div>
+        <div class="skill-card">React</div>
+        <div class="skill-card">Node.js</div>
+        <div class="skill-card">Python</div>
+        <div class="skill-card">CSS / Tailwind</div>
       </div>
-    </div>
+    </section>
 
-    <div class="section contact">
-      <h2>Contact</h2>
-      <p>Email: <a href="mailto:charan@example.com">charan@example.com</a></p>
-      <p>LinkedIn: <a href="#">linkedin.com/in/charan</a></p>
-    </div>
+    <!-- Projects Section -->
+    <section class="glass-card" id="projects">
+      <h2 class="section-title">Featured Projects</h2>
+      <div class="projects-grid">
+        <div class="project-card">
+          <div>
+            <h3>Analytics Dashboard</h3>
+            <p>A real-time data visualization tool built for tracking cloud infrastructure metrics.</p>
+            <div class="project-tags">
+              <span class="tag">React</span>
+              <span class="tag">Chart.js</span>
+              <span class="tag">Node.js</span>
+            </div>
+          </div>
+          <a href="#" class="project-link">View Project &rarr;</a>
+        </div>
+
+        <div class="project-card">
+          <div>
+            <h3>AI Code Assistant</h3>
+            <p>Lightweight extension that suggests contextual code fixes using large language models.</p>
+            <div class="project-tags">
+              <span class="tag">TypeScript</span>
+              <span class="tag">OpenAI API</span>
+            </div>
+          </div>
+          <a href="#" class="project-link">View Project &rarr;</a>
+        </div>
+
+        <div class="project-card">
+          <div>
+            <h3>E-Commerce Engine</h3>
+            <p>Fast, head-less shopping cart framework focused on conversion and microsecond loads.</p>
+            <div class="project-tags">
+              <span class="tag">Next.js</span>
+              <span class="tag">Stripe</span>
+              <span class="tag">GraphQL</span>
+            </div>
+          </div>
+          <a href="#" class="project-link">View Project &rarr;</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="glass-card" id="contact">
+      <h2 class="section-title">Let's Connect</h2>
+      <form onsubmit="event.preventDefault(); alert('Message sent!');">
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input type="text" id="name" class="form-control" placeholder="Your name" required />
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" class="form-control" placeholder="your.email@example.com" required />
+        </div>
+        <div class="form-group">
+          <label for="message">Message</label>
+          <textarea id="message" class="form-control" placeholder="Tell me about your project..." required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Send Message</button>
+      </form>
+    </section>
+
   </div>
+
 </body>
 </html>
