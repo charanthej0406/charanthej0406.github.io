@@ -1,5 +1,120 @@
-<html>
-  <body>
-    "hello world"
-  </body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>My Portfolio</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #89f7fe, #66a6ff);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .container {
+      width: 80%;
+      max-width: 900px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+      padding: 40px;
+      color: #fff;
+    }
+
+    h1, h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .section {
+      margin-bottom: 30px;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 15px;
+      padding: 20px;
+      margin: 10px 0;
+      transition: transform 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    .skills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+    }
+
+    .skill {
+      background: rgba(255, 255, 255, 0.2);
+      padding: 10px 20px;
+      border-radius: 30px;
+      font-size: 14px;
+    }
+
+    .contact {
+      text-align: center;
+    }
+
+    a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>✨ My Portfolio ✨</h1>
+    <p style="text-align:center;">Welcome to my personal portfolio built with Glassmorphism UI</p>
+
+    <div class="section">
+      <h2>About Me</h2>
+      <div class="card">
+        <p>Hello! I'm CHARAN, a passionate learner exploring programming and design. I enjoy building creative projects and solving problems with code.</p>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Projects</h2>
+      <div class="card">
+        <h3>Portfolio Website</h3>
+        <p>A responsive portfolio using glassmorphism design.</p>
+      </div>
+      <div class="card">
+        <h3>Birthday Wishes Page</h3>
+        <p>A fun HTML page with glowing text and animations.</p>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Skills</h2>
+      <div class="skills">
+        <div class="skill">HTML</div>
+        <div class="skill">CSS</div>
+        <div class="skill">JavaScript</div>
+        <div class="skill">C Programming</div>
+        <div class="skill">Python Basics</div>
+      </div>
+    </div>
+
+    <div class="section contact">
+      <h2>Contact</h2>
+      <p>Email: <a href="mailto:charan@example.com">charan@example.com</a></p>
+      <p>LinkedIn: <a href="#">linkedin.com/in/charan</a></p>
+    </div>
+  </div>
+</body>
 </html>
