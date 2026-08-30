@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lucky | Portfolio</title>
+    <title>V Charan Thej | Portfolio & Resume</title>
 
     <style>
         /* =========================
-           RESET
+           RESET & BASE STYLES
         ========================== */
         * {
             margin: 0;
@@ -21,7 +21,6 @@
             color: #fff;
             min-height: 100vh;
             overflow-x: hidden;
-
             background:
                 radial-gradient(circle at 10% 20%, #6c3cff 0, transparent 25%),
                 radial-gradient(circle at 90% 80%, #00d4ff 0, transparent 25%),
@@ -101,7 +100,6 @@
             padding: 15px 25px;
             border-radius: 20px;
             z-index: 1000;
-
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -119,7 +117,7 @@
 
         .nav-links {
             display: flex;
-            gap: 25px;
+            gap: 22px;
             list-style: none;
         }
 
@@ -134,7 +132,7 @@
         }
 
         /* =========================
-           GENERAL
+           GENERAL SECTIONS
         ========================== */
         section {
             width: min(1100px, 92%);
@@ -179,33 +177,30 @@
             height: 120px;
             border-radius: 50%;
             margin: 0 auto 25px;
-
             display: flex;
             align-items: center;
             justify-content: center;
-
-            font-size: 42px;
+            font-size: 40px;
             font-weight: bold;
-
             background: linear-gradient(135deg, #7c3aed, #06b6d4);
             border: 4px solid rgba(255,255,255,0.2);
             box-shadow: 0 0 40px rgba(6, 182, 212, 0.3);
         }
 
         .hero h1 {
-            font-size: clamp(40px, 7vw, 72px);
+            font-size: clamp(38px, 6vw, 64px);
             margin-bottom: 15px;
         }
 
         .hero h1 span {
             background: linear-gradient(90deg, #a78bfa, #67e8f9);
             -webkit-background-clip: text;
-            color: transparent;
+            -webkit-text-fill-color: transparent;
         }
 
         .hero h3 {
             color: #bbb;
-            font-size: 22px;
+            font-size: 20px;
             margin-bottom: 20px;
         }
 
@@ -249,6 +244,82 @@
             border-radius: 25px;
             line-height: 1.8;
             color: #ccc;
+        }
+
+        /* =========================
+           RESUME SECTION
+        ========================== */
+        .resume-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+        }
+
+        .resume-card {
+            padding: 30px;
+            border-radius: 22px;
+        }
+
+        .resume-card h3 {
+            font-size: 22px;
+            margin-bottom: 20px;
+            color: #67e8f9;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .resume-item {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 25px;
+            border-left: 2px solid #7c3aed;
+        }
+
+        .resume-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .resume-item h4 {
+            font-size: 17px;
+            color: #fff;
+            margin-bottom: 4px;
+        }
+
+        .resume-item .institution {
+            font-size: 14px;
+            color: #a78bfa;
+            margin-bottom: 4px;
+            font-weight: 600;
+        }
+
+        .resume-item .year {
+            font-size: 12px;
+            color: #888;
+            margin-bottom: 8px;
+        }
+
+        .resume-item p {
+            font-size: 14px;
+            color: #aaa;
+            line-height: 1.6;
+        }
+
+        .resume-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .resume-list li {
+            font-size: 14px;
+            color: #ccc;
+            line-height: 1.6;
+        }
+
+        .resume-list li strong {
+            color: #fff;
         }
 
         /* =========================
@@ -378,10 +449,9 @@
         }
 
         /* =========================
-           MOBILE
+           RESPONSIVE
         ========================== */
-        @media (max-width: 700px) {
-
+        @media (max-width: 768px) {
             nav {
                 padding: 14px 18px;
             }
@@ -406,6 +476,10 @@
                 font-size: 18px;
             }
 
+            .resume-container {
+                grid-template-columns: 1fr;
+            }
+
             .section-title h2 {
                 font-size: 30px;
             }
@@ -419,177 +493,182 @@
 
 <body>
 
-    <!-- Background -->
     <div class="blob blob1"></div>
     <div class="blob blob2"></div>
     <div class="blob blob3"></div>
 
-    <!-- Navbar -->
     <nav class="glass">
-        <div class="logo">L<span>.</span></div>
+        <div class="logo">VCT<span>.</span></div>
 
         <ul class="nav-links">
             <li><a href="#home">Home</a></li>
             <li><a href="#about">About</a></li>
+            <li><a href="#resume">Resume</a></li>
             <li><a href="#skills">Skills</a></li>
             <li><a href="#projects">Projects</a></li>
             <li><a href="#contact">Contact</a></li>
         </ul>
     </nav>
 
-
-    <!-- Hero -->
     <section class="hero" id="home">
-
         <div class="hero-content glass">
-
             <div class="profile">
-                L
+                CT
             </div>
 
-            <h1>Hello, I'm <span>Lucky</span></h1>
-
-            <h3>Engineering Student & Developer</h3>
+            <h1>Hello, I'm <span>V Charan Thej</span></h1>
+            <h3>B.Tech CSE Student @ Sai University</h3>
 
             <p>
-                I build modern, responsive and user-friendly digital
-                experiences. I enjoy solving problems, learning new
-                technologies and turning ideas into real projects.
+                Aspiring Computer Science Engineer passionate about building modern web applications, 
+                exploring core algorithms, and solving real-world challenges through software solutions.
             </p>
 
             <div class="buttons">
                 <a href="#projects" class="btn btn-primary">
                     View Projects
                 </a>
-
+                <a href="#resume" class="btn glass">
+                    View Resume
+                </a>
                 <a href="#contact" class="btn glass">
                     Contact Me
                 </a>
             </div>
-
         </div>
-
     </section>
 
-
-    <!-- About -->
     <section id="about">
-
         <div class="section-title">
             <h2>About Me</h2>
             <p>Get to know me</p>
         </div>
 
         <div class="about-card glass">
-
             <p>
-                I'm an engineering student passionate about software
-                development, web technologies and problem solving.
-                I enjoy creating clean interfaces and building projects
-                that combine functionality with good design.
+                I am a Computer Science & Engineering undergraduate at <strong>Sai University</strong> with a keen interest in full-stack web development, object-oriented software engineering, and data-driven systems.
             </p>
-
             <br>
-
             <p>
-                My goal is to continuously improve my technical skills,
-                explore new technologies and work on meaningful projects.
+                I pride myself on a strong analytical foundation, an eye for clean UI design, and an ongoing drive to master emerging technologies and frameworks.
             </p>
-
         </div>
-
     </section>
 
-
-    <!-- Skills -->
-    <section id="skills">
-
+    <section id="resume">
         <div class="section-title">
-            <h2>My Skills</h2>
-            <p>Technologies I work with</p>
+            <h2>My Resume</h2>
+            <p>Academic background & core strengths</p>
+        </div>
+
+        <div class="resume-container">
+            <div class="resume-card glass">
+                <h3>🎓 Education</h3>
+                <div class="resume-item">
+                    <h4>B.Tech in Computer Science & Engineering</h4>
+                    <div class="institution">Sai University</div>
+                    <div class="year">Undergraduate</div>
+                    <p>Focusing on Data Structures & Algorithms, Database Management, and Modern Software Development.</p>
+                </div>
+                <div class="resume-item">
+                    <h4>Higher Secondary Education</h4>
+                    <div class="institution">Secondary School Certificate</div>
+                    <div class="year">Completed</div>
+                    <p>Foundation in Mathematics, Physics, and Computer Basics.</p>
+                </div>
+            </div>
+
+            <div class="resume-card glass">
+                <h3>⚡ Profile & Core Competencies</h3>
+                <ul class="resume-list">
+                    <li>
+                        <strong>Full-Stack Development:</strong> Designing responsive, accessible user interfaces backed by structured database schemas.
+                    </li>
+                    <li>
+                        <strong>Algorithmic Thinking:</strong> Proficient in OOP architecture with Java & Python, algorithm design, and structured problem-solving.
+                    </li>
+                    <li>
+                        <strong>Tools & Workflows:</strong> Git, GitHub version control, modern IDEs, and RESTful API consumption.
+                    </li>
+                    <li>
+                        <strong>Soft Skills:</strong> Collaborative teamwork, clear technical communication, and active technical curiosity.
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills">
+        <div class="section-title">
+            <h2>Technical Skills</h2>
+            <p>Technologies and tools I work with</p>
         </div>
 
         <div class="skills">
-
             <div class="skill glass">
                 <div class="skill-icon">💻</div>
-                <h3>HTML</h3>
-                <p>Semantic & responsive web structure</p>
+                <h3>HTML5</h3>
+                <p>Semantic & accessible markup</p>
             </div>
 
             <div class="skill glass">
                 <div class="skill-icon">🎨</div>
-                <h3>CSS</h3>
-                <p>Modern UI & animations</p>
+                <h3>CSS3</h3>
+                <p>Glassmorphism & animations</p>
             </div>
 
             <div class="skill glass">
                 <div class="skill-icon">⚡</div>
                 <h3>JavaScript</h3>
-                <p>Interactive web applications</p>
+                <p>Modern ES6+ frontend logic</p>
             </div>
 
             <div class="skill glass">
                 <div class="skill-icon">🐍</div>
                 <h3>Python</h3>
-                <p>Programming & problem solving</p>
+                <p>Problem solving & backend scripts</p>
             </div>
 
             <div class="skill glass">
                 <div class="skill-icon">☕</div>
                 <h3>Java</h3>
-                <p>Object-oriented programming</p>
+                <p>OOP & software design</p>
             </div>
 
             <div class="skill glass">
                 <div class="skill-icon">🗄️</div>
                 <h3>SQL</h3>
-                <p>Database management</p>
+                <p>Relational databases & queries</p>
             </div>
-
         </div>
-
     </section>
 
-
-    <!-- Projects -->
     <section id="projects">
-
         <div class="section-title">
-            <h2>Projects</h2>
-            <p>Some of my recent work</p>
+            <h2>Featured Projects</h2>
+            <p>Some of my recent builds</p>
         </div>
 
         <div class="projects">
-
             <div class="project glass">
                 <div class="project-number">01 / PROJECT</div>
-
                 <h3>Portfolio Website</h3>
-
                 <p>
-                    A modern personal portfolio website designed with
-                    responsive layouts and a glassmorphism interface.
+                    A modern personal portfolio designed with glassmorphic aesthetics, responsive styling, and embedded resume details.
                 </p>
-
                 <div class="tags">
-                    <span class="tag">HTML</span>
-                    <span class="tag">CSS</span>
+                    <span class="tag">HTML5</span>
+                    <span class="tag">CSS3</span>
                     <span class="tag">JavaScript</span>
                 </div>
             </div>
 
-
             <div class="project glass">
                 <div class="project-number">02 / PROJECT</div>
-
                 <h3>Student Management System</h3>
-
                 <p>
-                    A system for managing student information,
-                    records and academic data efficiently.
+                    A system for managing student records, course performance, and academic data with relational database persistence.
                 </p>
-
                 <div class="tags">
                     <span class="tag">Java</span>
                     <span class="tag">SQL</span>
@@ -597,71 +676,49 @@
                 </div>
             </div>
 
-
             <div class="project glass">
                 <div class="project-number">03 / PROJECT</div>
-
                 <h3>Weather Application</h3>
-
                 <p>
-                    A responsive weather application that displays
-                    weather information using an API.
+                    A responsive web app that fetches and displays live meteorological data and forecasts via a public REST API.
                 </p>
-
                 <div class="tags">
                     <span class="tag">HTML</span>
                     <span class="tag">CSS</span>
                     <span class="tag">JavaScript</span>
-                    <span class="tag">API</span>
+                    <span class="tag">REST API</span>
                 </div>
             </div>
-
         </div>
-
     </section>
 
-
-    <!-- Contact -->
     <section id="contact">
-
         <div class="section-title">
-            <h2>Contact Me</h2>
-            <p>Let's connect</p>
+            <h2>Get In Touch</h2>
+            <p>Let's collaborate or discuss opportunities</p>
         </div>
 
         <div class="contact-card glass">
-
             <p>
-                Interested in working together or discussing a project?
-                Feel free to reach out.
+                Feel free to reach out regarding internships, projects, or technical collaborations!
             </p>
 
             <div class="contact-info">
-
-                <a href="mailto:your@email.com" class="contact-item">
-                    📧 your@email.com
+                <a href="mailto:charanthej@example.com" class="contact-item">
+                    📧 Email Me
                 </a>
-
-                <a href="https://github.com/" target="_blank"
-                   class="contact-item">
+                <a href="https://github.com/" target="_blank" class="contact-item">
                     💻 GitHub
                 </a>
-
-                <a href="https://linkedin.com/" target="_blank"
-                   class="contact-item">
+                <a href="https://linkedin.com/" target="_blank" class="contact-item">
                     🔗 LinkedIn
                 </a>
-
             </div>
-
         </div>
-
     </section>
 
-
-    <!-- Footer -->
     <footer>
-        © 2026 Lucky. All Rights Reserved.
+        © 2026 V Charan Thej. All Rights Reserved.
     </footer>
 
 </body>
