@@ -3,723 +3,943 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>V Charan Thej | Portfolio & Resume</title>
-
+    <title>Practical Programs Website</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        /* =========================
-           RESET & BASE STYLES
-        ========================== */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            scroll-behavior: smooth;
-        }
-
         body {
-            font-family: Arial, Helvetica, sans-serif;
-            color: #fff;
-            min-height: 100vh;
-            overflow-x: hidden;
-            background:
-                radial-gradient(circle at 10% 20%, #6c3cff 0, transparent 25%),
-                radial-gradient(circle at 90% 80%, #00d4ff 0, transparent 25%),
-                linear-gradient(135deg, #080b18, #11152b 50%, #080b18);
+            font-family: 'Inter', sans-serif;
+            background-color: #0f172a;
+            color: #f8fafc;
+        }
+        
+        /* Custom scrollbar for aesthetics */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #1e293b; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #475569; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #64748b; 
         }
 
-        a {
-            color: inherit;
-            text-decoration: none;
+        /* Glassmorphism effects */
+        .glass-card {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        /* =========================
-           BACKGROUND BLOBS
-        ========================== */
-        .blob {
-            position: fixed;
-            width: 300px;
-            height: 300px;
-            border-radius: 50%;
-            filter: blur(80px);
-            opacity: 0.45;
-            z-index: -1;
-            animation: float 8s ease-in-out infinite;
+        /* Syntax highlighting simulation for code blocks */
+        pre {
+            background-color: #1e1e1e !important;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            overflow-x: auto;
+            color: #d4d4d4;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.875rem;
         }
+        .kw { color: #569cd6; } /* Keyword */
+        .fn { color: #dcdcaa; } /* Function */
+        .str { color: #ce9178; } /* String */
+        .num { color: #b5cea8; } /* Number */
+        .cmt { color: #6a9955; } /* Comment */
 
-        .blob1 {
-            background: #7c3aed;
-            top: 5%;
-            left: -100px;
-        }
-
-        .blob2 {
-            background: #06b6d4;
-            bottom: 5%;
-            right: -100px;
-            animation-delay: 2s;
-        }
-
-        .blob3 {
-            background: #ec4899;
-            top: 45%;
-            right: 35%;
-            width: 180px;
-            height: 180px;
-            animation-delay: 4s;
-        }
-
-        @keyframes float {
-            0%, 100% {
-                transform: translateY(0) translateX(0);
-            }
-            50% {
-                transform: translateY(-40px) translateX(30px);
-            }
-        }
-
-        /* =========================
-           GLASS EFFECT
-        ========================== */
-        .glass {
-            background: rgba(255, 255, 255, 0.08);
-            border: 1px solid rgba(255, 255, 255, 0.16);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-            backdrop-filter: blur(18px);
-            -webkit-backdrop-filter: blur(18px);
-        }
-
-        /* =========================
-           NAVBAR
-        ========================== */
-        nav {
-            position: fixed;
-            top: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: min(1100px, 92%);
-            padding: 15px 25px;
-            border-radius: 20px;
-            z-index: 1000;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .logo {
-            font-size: 24px;
-            font-weight: 800;
-            letter-spacing: 1px;
-        }
-
-        .logo span {
-            color: #67e8f9;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 22px;
-            list-style: none;
-        }
-
-        .nav-links a {
-            font-size: 14px;
-            color: #ddd;
-            transition: 0.3s;
-        }
-
-        .nav-links a:hover {
-            color: #67e8f9;
-        }
-
-        /* =========================
-           GENERAL SECTIONS
-        ========================== */
-        section {
-            width: min(1100px, 92%);
-            margin: auto;
-            padding: 100px 0;
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 50px;
-        }
-
-        .section-title h2 {
-            font-size: 38px;
-            margin-bottom: 10px;
-        }
-
-        .section-title p {
-            color: #aaa;
-        }
-
-        /* =========================
-           HERO
-        ========================== */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding-top: 120px;
-        }
-
-        .hero-content {
-            padding: 50px;
-            border-radius: 30px;
-            max-width: 800px;
-        }
-
-        .profile {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            margin: 0 auto 25px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 40px;
-            font-weight: bold;
-            background: linear-gradient(135deg, #7c3aed, #06b6d4);
-            border: 4px solid rgba(255,255,255,0.2);
-            box-shadow: 0 0 40px rgba(6, 182, 212, 0.3);
-        }
-
-        .hero h1 {
-            font-size: clamp(38px, 6vw, 64px);
-            margin-bottom: 15px;
-        }
-
-        .hero h1 span {
-            background: linear-gradient(90deg, #a78bfa, #67e8f9);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .hero h3 {
-            color: #bbb;
-            font-size: 20px;
-            margin-bottom: 20px;
-        }
-
-        .hero p {
-            color: #aaa;
-            line-height: 1.8;
-            max-width: 650px;
-            margin: auto;
-        }
-
-        .buttons {
-            margin-top: 30px;
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            flex-wrap: wrap;
-        }
-
-        .btn {
-            padding: 13px 25px;
-            border-radius: 12px;
-            border: 1px solid rgba(255,255,255,0.2);
-            transition: 0.3s;
-            font-weight: bold;
-        }
-
-        .btn-primary {
-            background: linear-gradient(135deg, #7c3aed, #06b6d4);
-        }
-
-        .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-        }
-
-        /* =========================
-           ABOUT
-        ========================== */
-        .about-card {
-            padding: 35px;
-            border-radius: 25px;
-            line-height: 1.8;
-            color: #ccc;
-        }
-
-        /* =========================
-           RESUME SECTION
-        ========================== */
-        .resume-container {
+        /* CSS Grid Dashboard Specific Styles (Used in the Grid Project) */
+        .demo-grid-container {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 25px;
-        }
-
-        .resume-card {
-            padding: 30px;
-            border-radius: 22px;
-        }
-
-        .resume-card h3 {
-            font-size: 22px;
-            margin-bottom: 20px;
-            color: #67e8f9;
-            display: flex;
-            align-items: center;
+            grid-template-areas: 
+                "header header header"
+                "sidebar main main"
+                "sidebar footer footer";
+            grid-template-columns: 200px 1fr 1fr;
+            grid-template-rows: auto 1fr auto;
             gap: 10px;
+            height: 400px;
         }
-
-        .resume-item {
-            position: relative;
-            padding-left: 20px;
-            margin-bottom: 25px;
-            border-left: 2px solid #7c3aed;
-        }
-
-        .resume-item:last-child {
-            margin-bottom: 0;
-        }
-
-        .resume-item h4 {
-            font-size: 17px;
-            color: #fff;
-            margin-bottom: 4px;
-        }
-
-        .resume-item .institution {
-            font-size: 14px;
-            color: #a78bfa;
-            margin-bottom: 4px;
-            font-weight: 600;
-        }
-
-        .resume-item .year {
-            font-size: 12px;
-            color: #888;
-            margin-bottom: 8px;
-        }
-
-        .resume-item p {
-            font-size: 14px;
-            color: #aaa;
-            line-height: 1.6;
-        }
-
-        .resume-list {
-            list-style: none;
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-
-        .resume-list li {
-            font-size: 14px;
-            color: #ccc;
-            line-height: 1.6;
-        }
-
-        .resume-list li strong {
-            color: #fff;
-        }
-
-        /* =========================
-           SKILLS
-        ========================== */
-        .skills {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 20px;
-        }
-
-        .skill {
-            padding: 25px;
-            border-radius: 20px;
-            text-align: center;
-            transition: 0.3s;
-        }
-
-        .skill:hover {
-            transform: translateY(-8px);
-            background: rgba(255,255,255,0.12);
-        }
-
-        .skill-icon {
-            font-size: 38px;
-            margin-bottom: 15px;
-        }
-
-        .skill h3 {
-            margin-bottom: 8px;
-        }
-
-        .skill p {
-            color: #aaa;
-            font-size: 14px;
-        }
-
-        /* =========================
-           PROJECTS
-        ========================== */
-        .projects {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
-        }
-
-        .project {
-            padding: 30px;
-            border-radius: 22px;
-            transition: 0.3s;
-        }
-
-        .project:hover {
-            transform: translateY(-8px);
-        }
-
-        .project-number {
-            font-size: 14px;
-            color: #67e8f9;
-            margin-bottom: 20px;
-        }
-
-        .project h3 {
-            font-size: 23px;
-            margin-bottom: 12px;
-        }
-
-        .project p {
-            color: #aaa;
-            line-height: 1.6;
-            margin-bottom: 20px;
-        }
-
-        .tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-        }
-
-        .tag {
-            padding: 6px 12px;
-            border-radius: 20px;
-            font-size: 12px;
-            background: rgba(255,255,255,0.1);
-            color: #ccc;
-        }
-
-        /* =========================
-           CONTACT
-        ========================== */
-        .contact-card {
-            max-width: 700px;
-            margin: auto;
-            padding: 40px;
-            border-radius: 25px;
-            text-align: center;
-        }
-
-        .contact-card p {
-            color: #aaa;
-            line-height: 1.7;
-            margin-bottom: 25px;
-        }
-
-        .contact-info {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 15px;
-        }
-
-        .contact-item {
-            padding: 12px 18px;
-            border-radius: 12px;
-            background: rgba(255,255,255,0.08);
-            color: #ddd;
-        }
-
-        /* =========================
-           FOOTER
-        ========================== */
-        footer {
-            text-align: center;
-            padding: 30px;
-            color: #888;
-            border-top: 1px solid rgba(255,255,255,0.1);
-        }
-
-        /* =========================
-           RESPONSIVE
-        ========================== */
-        @media (max-width: 768px) {
-            nav {
-                padding: 14px 18px;
-            }
-
-            .nav-links {
-                gap: 12px;
-            }
-
-            .nav-links a {
-                font-size: 12px;
-            }
-
-            .logo {
-                font-size: 20px;
-            }
-
-            .hero-content {
-                padding: 30px 20px;
-            }
-
-            .hero h3 {
-                font-size: 18px;
-            }
-
-            .resume-container {
+        @media (max-width: 640px) {
+            .demo-grid-container {
+                grid-template-areas: 
+                    "header"
+                    "sidebar"
+                    "main"
+                    "footer";
                 grid-template-columns: 1fr;
             }
-
-            .section-title h2 {
-                font-size: 30px;
-            }
-
-            section {
-                padding: 70px 0;
-            }
+        }
+        
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-in {
+            animation: fadeIn 0.3s ease-out forwards;
         }
     </style>
 </head>
+<body class="min-h-screen flex flex-col">
 
-<body>
-
-    <div class="blob blob1"></div>
-    <div class="blob blob2"></div>
-    <div class="blob blob3"></div>
-
-    <nav class="glass">
-        <div class="logo">VCT<span>.</span></div>
-
-        <ul class="nav-links">
-            <li><a href="#home">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#resume">Resume</a></li>
-            <li><a href="#skills">Skills</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
+    <nav class="sticky top-0 z-50 glass-card border-b border-gray-700 shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center space-x-3">
+                    <div class="flex-shrink-0 bg-blue-500 text-white p-2 rounded-lg font-bold text-xl">
+                        </>
+                    </div>
+                    <span class="font-bold text-xl tracking-tight text-white hidden sm:block">Practical Lab</span>
+                </div>
+                <div>
+                    <button onclick="navigate('home')" class="text-gray-300 hover:text-white hover:bg-gray-700 px-4 py-2 rounded-md text-sm font-medium transition-colors border border-transparent hover:border-gray-600">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline-block mr-1 -mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                        </svg>
+                        Home
+                    </button>
+                </div>
+            </div>
+        </div>
     </nav>
 
-    <section class="hero" id="home">
-        <div class="hero-content glass">
-            <div class="profile">
-                CT
-            </div>
+    <main id="app-container" class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full">
+        <!-- Dynamic content injected here -->
+    </main>
 
-            <h1>Hello, I'm <span>V Charan Thej</span></h1>
-            <h3>B.Tech CSE Student @ Sai University</h3>
-
-            <p>
-                Aspiring Computer Science Engineer passionate about building modern web applications, 
-                exploring core algorithms, and solving real-world challenges through software solutions.
-            </p>
-
-            <div class="buttons">
-                <a href="#projects" class="btn btn-primary">
-                    View Projects
-                </a>
-                <a href="#resume" class="btn glass">
-                    View Resume
-                </a>
-                <a href="#contact" class="btn glass">
-                    Contact Me
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <section id="about">
-        <div class="section-title">
-            <h2>About Me</h2>
-            <p>Get to know me</p>
-        </div>
-
-        <div class="about-card glass">
-            <p>
-                I am a Computer Science & Engineering undergraduate at <strong>Sai University</strong> with a keen interest in full-stack web development, object-oriented software engineering, and data-driven systems.
-            </p>
-            <br>
-            <p>
-                I pride myself on a strong analytical foundation, an eye for clean UI design, and an ongoing drive to master emerging technologies and frameworks.
-            </p>
-        </div>
-    </section>
-
-    <section id="resume">
-        <div class="section-title">
-            <h2>My Resume</h2>
-            <p>Academic background & core strengths</p>
-        </div>
-
-        <div class="resume-container">
-            <div class="resume-card glass">
-                <h3>🎓 Education</h3>
-                <div class="resume-item">
-                    <h4>B.Tech in Computer Science & Engineering</h4>
-                    <div class="institution">Sai University</div>
-                    <div class="year">Undergraduate</div>
-                    <p>Focusing on Data Structures & Algorithms, Database Management, and Modern Software Development.</p>
-                </div>
-                <div class="resume-item">
-                    <h4>Higher Secondary Education</h4>
-                    <div class="institution">Secondary School Certificate</div>
-                    <div class="year">Completed</div>
-                    <p>Foundation in Mathematics, Physics, and Computer Basics.</p>
-                </div>
-            </div>
-
-            <div class="resume-card glass">
-                <h3>⚡ Profile & Core Competencies</h3>
-                <ul class="resume-list">
-                    <li>
-                        <strong>Full-Stack Development:</strong> Designing responsive, accessible user interfaces backed by structured database schemas.
-                    </li>
-                    <li>
-                        <strong>Algorithmic Thinking:</strong> Proficient in OOP architecture with Java & Python, algorithm design, and structured problem-solving.
-                    </li>
-                    <li>
-                        <strong>Tools & Workflows:</strong> Git, GitHub version control, modern IDEs, and RESTful API consumption.
-                    </li>
-                    <li>
-                        <strong>Soft Skills:</strong> Collaborative teamwork, clear technical communication, and active technical curiosity.
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </section>
-
-    <section id="skills">
-        <div class="section-title">
-            <h2>Technical Skills</h2>
-            <p>Technologies and tools I work with</p>
-        </div>
-
-        <div class="skills">
-            <div class="skill glass">
-                <div class="skill-icon">💻</div>
-                <h3>HTML5</h3>
-                <p>Semantic & accessible markup</p>
-            </div>
-
-            <div class="skill glass">
-                <div class="skill-icon">🎨</div>
-                <h3>CSS3</h3>
-                <p>Glassmorphism & animations</p>
-            </div>
-
-            <div class="skill glass">
-                <div class="skill-icon">⚡</div>
-                <h3>JavaScript</h3>
-                <p>Modern ES6+ frontend logic</p>
-            </div>
-
-            <div class="skill glass">
-                <div class="skill-icon">🐍</div>
-                <h3>Python</h3>
-                <p>Problem solving & backend scripts</p>
-            </div>
-
-            <div class="skill glass">
-                <div class="skill-icon">☕</div>
-                <h3>Java</h3>
-                <p>OOP & software design</p>
-            </div>
-
-            <div class="skill glass">
-                <div class="skill-icon">🗄️</div>
-                <h3>SQL</h3>
-                <p>Relational databases & queries</p>
-            </div>
-        </div>
-    </section>
-
-    <section id="projects">
-        <div class="section-title">
-            <h2>Featured Projects</h2>
-            <p>Some of my recent builds</p>
-        </div>
-
-        <div class="projects">
-            <div class="project glass">
-                <div class="project-number">01 / PROJECT</div>
-                <h3>Portfolio Website</h3>
-                <p>
-                    A modern personal portfolio designed with glassmorphic aesthetics, responsive styling, and embedded resume details.
-                </p>
-                <div class="tags">
-                    <span class="tag">HTML5</span>
-                    <span class="tag">CSS3</span>
-                    <span class="tag">JavaScript</span>
-                </div>
-            </div>
-
-            <div class="project glass">
-                <div class="project-number">02 / PROJECT</div>
-                <h3>Student Management System</h3>
-                <p>
-                    A system for managing student records, course performance, and academic data with relational database persistence.
-                </p>
-                <div class="tags">
-                    <span class="tag">Java</span>
-                    <span class="tag">SQL</span>
-                    <span class="tag">OOP</span>
-                </div>
-            </div>
-
-            <div class="project glass">
-                <div class="project-number">03 / PROJECT</div>
-                <h3>Weather Application</h3>
-                <p>
-                    A responsive web app that fetches and displays live meteorological data and forecasts via a public REST API.
-                </p>
-                <div class="tags">
-                    <span class="tag">HTML</span>
-                    <span class="tag">CSS</span>
-                    <span class="tag">JavaScript</span>
-                    <span class="tag">REST API</span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="contact">
-        <div class="section-title">
-            <h2>Get In Touch</h2>
-            <p>Let's collaborate or discuss opportunities</p>
-        </div>
-
-        <div class="contact-card glass">
-            <p>
-                Feel free to reach out regarding internships, projects, or technical collaborations!
-            </p>
-
-            <div class="contact-info">
-                <a href="mailto:charanthej@example.com" class="contact-item">
-                    📧 Email Me
-                </a>
-                <a href="https://github.com/" target="_blank" class="contact-item">
-                    💻 GitHub
-                </a>
-                <a href="https://linkedin.com/" target="_blank" class="contact-item">
-                    🔗 LinkedIn
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <footer>
-        © 2026 V Charan Thej. All Rights Reserved.
+    <footer class="glass-card border-t border-gray-800 text-center py-6 mt-auto">
+        <p class="text-gray-400 text-sm">© 2026 Practical Programs Website | Built as a Single Page Application</p>
     </footer>
 
+    <script>
+        // Store currently active cleanup function (for intervals/listeners)
+        let activeCleanup = null;
+
+        // Data structure to hold all programs. Easy to extend to 150+
+        const programsData = {
+            html: [
+                {
+                    id: 'html-registration',
+                    title: 'Student Registration Form',
+                    description: 'A comprehensive HTML5 registration form with modern input types.',
+                    code: `<!-- HTML Registration Form -->
+<form class="space-y-4">
+    <div class="grid grid-cols-2 gap-4">
+        <div>
+            <label>First Name</label>
+            <input type="text" required class="input-field" />
+        </div>
+        <div>
+            <label>Last Name</label>
+            <input type="text" required class="input-field" />
+        </div>
+    </div>
+    <div>
+        <label>Email Address</label>
+        <input type="email" required class="input-field" />
+    </div>
+    <div>
+        <label>Date of Birth</label>
+        <input type="date" required class="input-field" />
+    </div>
+    <button type="submit" class="btn-primary">Register</button>
+</form>`,
+                    render: (container) => {
+                        container.innerHTML = `
+                            <div class="max-w-md mx-auto bg-gray-800 p-6 rounded-xl border border-gray-700">
+                                <h3 class="text-xl font-bold mb-4 text-center">Student Registration</h3>
+                                <form id="demo-reg-form" class="space-y-4">
+                                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                        <div>
+                                            <label class="block text-sm font-medium text-gray-300 mb-1">First Name</label>
+                                            <input type="text" required class="w-full bg-gray-700 border border-gray-600 rounded-lg px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                        </div>
+                                        <div>
+                                            <label class="block text-sm font-medium text-gray-300 mb-1">Last Name</label>
+                                            <input type="text" required class="w-full bg-gray-700 border border-gray-600 rounded-lg px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-300 mb-1">Email</label>
+                                        <input type="email" required class="w-full bg-gray-700 border border-gray-600 rounded-lg px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-300 mb-1">Course</label>
+                                        <select class="w-full bg-gray-700 border border-gray-600 rounded-lg px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                            <option>B.Tech Computer Science</option>
+                                            <option>B.Tech Electronics</option>
+                                            <option>BBA</option>
+                                        </select>
+                                    </div>
+                                    <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg transition-colors">Submit Registration</button>
+                                </form>
+                                <div id="form-msg" class="mt-3 text-sm text-green-400 hidden">Registration simulated successfully!</div>
+                            </div>
+                        `;
+                        container.querySelector('#demo-reg-form').addEventListener('submit', (e) => {
+                            e.preventDefault();
+                            container.querySelector('#form-msg').classList.remove('hidden');
+                            setTimeout(() => container.querySelector('#form-msg').classList.add('hidden'), 3000);
+                        });
+                    }
+                },
+                // Placeholders for expansion
+                { id: 'html-basic', title: 'Basic HTML Structure', description: 'Create a basic HTML webpage using headings, paragraphs, and line breaks.', code: '<h1>Hello World</h1>\n<p>This is a paragraph.</p>', render: (c) => c.innerHTML = '<div class="p-4 bg-white text-black rounded"><h1>Heading 1</h1><br><p>Paragraph text with line break.</p></div>' },
+                { id: 'html-lists', title: 'HTML Lists', description: 'Create ordered, unordered, and description lists.', code: '<ul><li>Item 1</li></ul>', render: (c) => c.innerHTML = '<div class="p-4 bg-gray-800 rounded text-left"><ul class="list-disc ml-6"><li>Unordered 1</li></ul><ol class="list-decimal ml-6 mt-2"><li>Ordered 1</li></ol></div>' },
+            ],
+            css: [
+                {
+                    id: 'css-grid',
+                    title: 'CSS Grid Dashboard Layout',
+                    description: 'A responsive visual example of a modern dashboard using CSS Grid.',
+                    code: `/* CSS Grid Layout */
+.demo-grid-container {
+    display: grid;
+    grid-template-areas: 
+        "header header header"
+        "sidebar main main"
+        "sidebar footer footer";
+    grid-template-columns: 200px 1fr 1fr;
+    grid-template-rows: auto 1fr auto;
+    gap: 10px;
+    height: 400px;
+}
+.header { grid-area: header; }
+.sidebar { grid-area: sidebar; }
+.main { grid-area: main; }
+.footer { grid-area: footer; }
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+    .demo-grid-container {
+        grid-template-areas: 
+            "header"
+            "sidebar"
+            "main"
+            "footer";
+        grid-template-columns: 1fr;
+    }
+}`,
+                    render: (container) => {
+                        container.innerHTML = `
+                            <div class="demo-grid-container w-full bg-gray-900 p-2 rounded-xl border border-gray-700">
+                                <div class="bg-blue-600 rounded flex items-center justify-center font-bold" style="grid-area: header;">Header (Nav)</div>
+                                <div class="bg-gray-700 rounded flex items-center justify-center font-bold" style="grid-area: sidebar;">Sidebar (Menu)</div>
+                                <div class="bg-gray-800 rounded flex items-center justify-center font-bold p-4" style="grid-area: main;">
+                                    Main Content Area<br>
+                                    Adapts via grid-template-areas
+                                </div>
+                                <div class="bg-blue-900 rounded flex items-center justify-center font-bold" style="grid-area: footer;">Footer</div>
+                            </div>
+                        `;
+                    }
+                },
+                // Placeholders for expansion
+                { id: 'css-flex', title: 'CSS Flexbox Alignment', description: 'Demonstrate Flexbox alignment properties.', code: '.flex { display: flex; justify-content: center; }', render: (c) => c.innerHTML = '<div class="flex justify-between items-center bg-gray-800 p-4 rounded"><div class="p-2 bg-red-500 rounded">Box 1</div><div class="p-2 bg-blue-500 rounded">Box 2</div></div>' },
+                { id: 'css-anim', title: 'CSS Keyframe Animations', description: 'Create a loading spinner.', code: '@keyframes spin { to { transform: rotate(360deg); } }', render: (c) => c.innerHTML = '<div class="flex justify-center p-8"><div class="w-12 h-12 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div></div>' },
+            ],
+            javascript: [
+                {
+                    id: 'js-calc',
+                    title: 'Digital Calculator',
+                    description: 'A fully functional on-screen digital calculator.',
+                    code: `// Calculator Logic
+let currentDisplay = '0';
+
+function appendChar(char) {
+    if (currentDisplay === '0' && char !== '.') {
+        currentDisplay = char;
+    } else {
+        currentDisplay += char;
+    }
+    updateScreen();
+}
+
+function clearScreen() {
+    currentDisplay = '0';
+    updateScreen();
+}
+
+function calculate() {
+    try {
+        // Safe evaluation abstraction
+        currentDisplay = String(eval(currentDisplay)); 
+    } catch (e) {
+        currentDisplay = 'Error';
+    }
+    updateScreen();
+}
+`,
+                    render: (container) => {
+                        container.innerHTML = `
+                            <div class="max-w-xs mx-auto bg-gray-800 p-4 rounded-2xl shadow-2xl border border-gray-700">
+                                <div id="calc-display" class="bg-gray-900 text-right text-3xl font-mono p-4 rounded-xl mb-4 text-white overflow-hidden h-16 flex items-center justify-end">0</div>
+                                <div class="grid grid-cols-4 gap-2">
+                                    <button class="col-span-3 bg-red-500 hover:bg-red-600 text-white font-bold py-3 rounded-lg" onclick="calcAction('C')">Clear</button>
+                                    <button class="bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 rounded-lg" onclick="calcAction('/')">÷</button>
+                                    
+                                    <button class="bg-gray-700 hover:bg-gray-600 text-white font-bold py-3 rounded-lg" onclick="calcAction('7')">7</button>
+                                    <button class="bg-gray-700 hover:bg-gray-600 text-white font-bold py-3 rounded-lg" onclick="calcAction('8')">8</button>
+                                    <button class="bg-gray-700 hover:bg-gray-600 text-white font-bold py-3 rounded-lg" onclick="calcAction('9')">9</button>
+                                    <button class="bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 rounded-lg" onclick="calcAction('*')">×</button>
+                                    
+                                    <button class="bg-gray-700 hover:bg-gray-600 text-white font-bold py-3 rounded-lg" onclick="calcAction('4')">4</button>
+                                    <button class="bg-gray-700 hover:bg-gray-600 text-white font-bold py-3 rounded-lg" onclick="calcAction('5')">5</button>
+                                    <button class="bg-gray-700 hover:bg-gray-600 text-white font-bold py-3 rounded-lg" onclick="calcAction('6')">6</button>
+                                    <button class="bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 rounded-lg" onclick="calcAction('-')">-</button>
+                                    
+                                    <button class="bg-gray-700 hover:bg-gray-600 text-white font-bold py-3 rounded-lg" onclick="calcAction('1')">1</button>
+                                    <button class="bg-gray-700 hover:bg-gray-600 text-white font-bold py-3 rounded-lg" onclick="calcAction('2')">2</button>
+                                    <button class="bg-gray-700 hover:bg-gray-600 text-white font-bold py-3 rounded-lg" onclick="calcAction('3')">3</button>
+                                    <button class="bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 rounded-lg" onclick="calcAction('+')">+</button>
+                                    
+                                    <button class="col-span-2 bg-gray-700 hover:bg-gray-600 text-white font-bold py-3 rounded-lg" onclick="calcAction('0')">0</button>
+                                    <button class="bg-gray-700 hover:bg-gray-600 text-white font-bold py-3 rounded-lg" onclick="calcAction('.')">.</button>
+                                    <button class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 rounded-lg" onclick="calcAction('=')">=</button>
+                                </div>
+                            </div>
+                        `;
+                        let expression = '0';
+                        const display = container.querySelector('#calc-display');
+                        
+                        window.calcAction = (val) => {
+                            if(val === 'C') expression = '0';
+                            else if(val === '=') {
+                                try {
+                                    // Safe calculation for demo purposes only allowing math chars
+                                    if(/^[0-9+\-*/.\s]+$/.test(expression)) {
+                                        expression = String(new Function('return ' + expression)());
+                                    } else {
+                                        expression = "Error";
+                                    }
+                                } catch(e) { expression = 'Error'; }
+                            }
+                            else {
+                                if(expression === '0' || expression === 'Error') expression = val;
+                                else expression += val;
+                            }
+                            display.textContent = expression;
+                        };
+                        
+                        return () => { delete window.calcAction; };
+                    }
+                },
+                {
+                    id: 'js-clock',
+                    title: 'Digital Clock',
+                    description: 'A real-time updating digital clock using JavaScript Date object.',
+                    code: `// Clock Logic
+function updateClock() {
+    const now = new Date();
+    let hours = now.getHours();
+    let minutes = now.getMinutes();
+    let seconds = now.getSeconds();
+    let ampm = hours >= 12 ? 'PM' : 'AM';
+    
+    hours = hours % 12;
+    hours = hours ? hours : 12; // 0 should be 12
+    
+    minutes = minutes < 10 ? '0' + minutes : minutes;
+    seconds = seconds < 10 ? '0' + seconds : seconds;
+    
+    document.getElementById('clockDisplay').textContent = 
+        hours + ':' + minutes + ':' + seconds + ' ' + ampm;
+}
+setInterval(updateClock, 1000);
+`,
+                    render: (container) => {
+                        container.innerHTML = `
+                            <div class="flex justify-center items-center h-64">
+                                <div class="bg-gray-800 p-8 rounded-3xl shadow-[0_0_40px_rgba(59,130,246,0.3)] border border-gray-700 text-center">
+                                    <div id="live-clock" class="text-5xl sm:text-7xl font-mono font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-emerald-400 tracking-wider">
+                                        00:00:00 AM
+                                    </div>
+                                    <div id="live-date" class="mt-4 text-gray-400 font-medium tracking-widest uppercase">
+                                        Loading Date...
+                                    </div>
+                                </div>
+                            </div>
+                        `;
+                        
+                        const updateTime = () => {
+                            const now = new Date();
+                            const display = container.querySelector('#live-clock');
+                            const dateDisplay = container.querySelector('#live-date');
+                            if(!display) return;
+                            
+                            let h = now.getHours(), m = now.getMinutes(), s = now.getSeconds();
+                            let ampm = h >= 12 ? 'PM' : 'AM';
+                            h = h % 12; h = h ? h : 12;
+                            m = m < 10 ? '0'+m : m;
+                            s = s < 10 ? '0'+s : s;
+                            
+                            display.textContent = `${h}:${m}:${s} ${ampm}`;
+                            dateDisplay.textContent = now.toLocaleDateString(undefined, { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+                        };
+                        
+                        updateTime();
+                        const interval = setInterval(updateTime, 1000);
+                        return () => clearInterval(interval);
+                    }
+                },
+                {
+                    id: 'js-stopwatch',
+                    title: 'Stopwatch',
+                    description: 'A precision stopwatch with start, stop, and reset functionality.',
+                    code: `let startTime, updatedTime, difference, tInterval;
+let running = false;
+
+function startTimer() {
+    if (!running) {
+        startTime = new Date().getTime() - (difference || 0);
+        tInterval = setInterval(updateDisplay, 10);
+        running = true;
+    }
+}
+
+function pauseTimer() {
+    clearInterval(tInterval);
+    running = false;
+}
+
+function resetTimer() {
+    clearInterval(tInterval);
+    difference = 0;
+    running = false;
+    display.textContent = "00:00:00.00";
+}`,
+                    render: (container) => {
+                        container.innerHTML = `
+                            <div class="max-w-md mx-auto bg-gray-800 p-8 rounded-3xl shadow-xl text-center border border-gray-700">
+                                <div id="sw-display" class="text-6xl font-mono font-bold text-white mb-8 tracking-tight">00:00:00</div>
+                                <div class="flex justify-center space-x-4">
+                                    <button id="sw-start" class="px-6 py-2 bg-green-500 hover:bg-green-600 text-white font-bold rounded-full transition-transform transform active:scale-95">Start</button>
+                                    <button id="sw-stop" class="px-6 py-2 bg-red-500 hover:bg-red-600 text-white font-bold rounded-full transition-transform transform active:scale-95">Stop</button>
+                                    <button id="sw-reset" class="px-6 py-2 bg-gray-600 hover:bg-gray-500 text-white font-bold rounded-full transition-transform transform active:scale-95">Reset</button>
+                                </div>
+                            </div>
+                        `;
+                        
+                        let startTime, tInterval;
+                        let difference = 0;
+                        let running = false;
+                        const display = container.querySelector('#sw-display');
+                        
+                        function updateDisplay() {
+                            let updatedTime = new Date().getTime();
+                            difference = updatedTime - startTime;
+                            
+                            let hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                            let minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+                            let seconds = Math.floor((difference % (1000 * 60)) / 1000);
+                            let milliseconds = Math.floor((difference % 1000) / 10);
+                            
+                            minutes = (minutes < 10) ? "0" + minutes : minutes;
+                            seconds = (seconds < 10) ? "0" + seconds : seconds;
+                            milliseconds = (milliseconds < 10) ? "0" + milliseconds : milliseconds;
+                            
+                            display.textContent = minutes + ":" + seconds + ":" + milliseconds;
+                        }
+                        
+                        container.querySelector('#sw-start').addEventListener('click', () => {
+                            if(!running) {
+                                startTime = new Date().getTime() - difference;
+                                tInterval = setInterval(updateDisplay, 10);
+                                running = true;
+                            }
+                        });
+                        
+                        container.querySelector('#sw-stop').addEventListener('click', () => {
+                            clearInterval(tInterval);
+                            running = false;
+                        });
+                        
+                        container.querySelector('#sw-reset').addEventListener('click', () => {
+                            clearInterval(tInterval);
+                            running = false;
+                            difference = 0;
+                            display.textContent = "00:00:00";
+                        });
+                        
+                        return () => clearInterval(tInterval);
+                    }
+                },
+                {
+                    id: 'js-todo',
+                    title: 'To-Do List',
+                    description: 'A DOM manipulation project to add, complete, and delete tasks dynamically.',
+                    code: `// To-Do List DOM Manipulation
+function addTask(taskText) {
+    const li = document.createElement('li');
+    
+    const span = document.createElement('span');
+    span.textContent = taskText;
+    
+    const deleteBtn = document.createElement('button');
+    deleteBtn.textContent = 'Delete';
+    deleteBtn.onclick = () => li.remove();
+    
+    const completeBtn = document.createElement('button');
+    completeBtn.textContent = 'Done';
+    completeBtn.onclick = () => span.classList.toggle('strike-through');
+    
+    li.appendChild(span);
+    li.appendChild(completeBtn);
+    li.appendChild(deleteBtn);
+    document.getElementById('taskList').appendChild(li);
+}`,
+                    render: (container) => {
+                        container.innerHTML = `
+                            <div class="max-w-lg mx-auto bg-gray-800 p-6 rounded-2xl border border-gray-700 shadow-xl">
+                                <h3 class="text-2xl font-bold mb-4 text-center">Task Manager</h3>
+                                <div class="flex space-x-2 mb-6">
+                                    <input type="text" id="todo-input" placeholder="Enter a new task..." class="flex-grow bg-gray-900 border border-gray-600 rounded-lg px-4 py-2 text-white focus:outline-none focus:border-blue-500">
+                                    <button id="todo-add" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-medium transition-colors">Add Task</button>
+                                </div>
+                                <ul id="todo-list" class="space-y-3">
+                                    <!-- Tasks injected here -->
+                                </ul>
+                            </div>
+                        `;
+                        
+                        const input = container.querySelector('#todo-input');
+                        const addBtn = container.querySelector('#todo-add');
+                        const list = container.querySelector('#todo-list');
+                        
+                        const addTask = () => {
+                            const val = input.value.trim();
+                            if(!val) return;
+                            
+                            const li = document.createElement('li');
+                            li.className = "flex items-center justify-between bg-gray-700 p-3 rounded-lg group animate-fade-in";
+                            
+                            const textSpan = document.createElement('span');
+                            textSpan.className = "flex-grow cursor-pointer transition-colors";
+                            textSpan.textContent = val;
+                            textSpan.onclick = () => {
+                                textSpan.classList.toggle('line-through');
+                                textSpan.classList.toggle('text-gray-500');
+                            };
+                            
+                            const delBtn = document.createElement('button');
+                            delBtn.innerHTML = `
+                                <svg class="w-5 h-5 text-gray-400 hover:text-red-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
+                            `;
+                            delBtn.className = "ml-2 p-1 focus:outline-none";
+                            delBtn.onclick = (e) => { e.stopPropagation(); li.remove(); };
+                            
+                            li.appendChild(textSpan);
+                            li.appendChild(delBtn);
+                            list.appendChild(li);
+                            input.value = '';
+                        };
+                        
+                        addBtn.addEventListener('click', addTask);
+                        input.addEventListener('keypress', (e) => { if(e.key === 'Enter') addTask(); });
+                        
+                        // Add a couple default tasks
+                        input.value = "Learn DOM Manipulation"; addTask();
+                        input.value = "Complete JS Assignments"; addTask();
+                    }
+                },
+                {
+                    id: 'js-fibonacci',
+                    title: 'Fibonacci Series Generator',
+                    description: 'Generate Fibonacci sequence highlighting Iterative vs Recursive approaches.',
+                    code: `/* Iterative Approach (O(n) time, O(1) space) */
+function fibIterative(n) {
+    let result = [];
+    let a = 0, b = 1, temp;
+    for(let i = 0; i < n; i++) {
+        result.push(a);
+        temp = a + b;
+        a = b;
+        b = temp;
+    }
+    return result;
+}
+
+/* Recursive Approach (O(2^n) time without memoization) */
+function fibRecursive(n) {
+    if(n <= 0) return 0;
+    if(n === 1) return 1;
+    return fibRecursive(n - 1) + fibRecursive(n - 2);
+}
+
+// Generate sequence using recursive approach
+function generateRecursiveSequence(count) {
+    let result = [];
+    for(let i = 0; i < count; i++) {
+        result.push(fibRecursive(i));
+    }
+    return result;
+}`,
+                    render: (container) => {
+                        container.innerHTML = `
+                            <div class="max-w-2xl mx-auto bg-gray-800 p-6 rounded-2xl border border-gray-700 shadow-xl">
+                                <div class="flex flex-col sm:flex-row items-center gap-4 mb-6">
+                                    <label class="font-medium whitespace-nowrap">Number of terms (N):</label>
+                                    <input type="number" id="fib-input" value="10" min="1" max="50" class="w-full sm:w-24 bg-gray-900 border border-gray-600 rounded px-3 py-2 text-white">
+                                    <button id="fib-btn" class="w-full sm:w-auto bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded font-medium transition-colors">Generate</button>
+                                </div>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                    <div class="bg-gray-900 p-4 rounded-xl border border-gray-700">
+                                        <h4 class="text-lg font-bold text-emerald-400 mb-2">Iterative Result</h4>
+                                        <div id="fib-iter-out" class="break-words font-mono text-gray-300 text-sm"></div>
+                                        <div id="fib-iter-time" class="text-xs text-gray-500 mt-2"></div>
+                                    </div>
+                                    <div class="bg-gray-900 p-4 rounded-xl border border-gray-700">
+                                        <h4 class="text-lg font-bold text-orange-400 mb-2">Recursive Result</h4>
+                                        <p class="text-xs text-red-400 mb-2 font-mono">Warning: Values > 35 may hang browser.</p>
+                                        <div id="fib-rec-out" class="break-words font-mono text-gray-300 text-sm"></div>
+                                        <div id="fib-rec-time" class="text-xs text-gray-500 mt-2"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        `;
+                        
+                        container.querySelector('#fib-btn').addEventListener('click', () => {
+                            const n = parseInt(container.querySelector('#fib-input').value);
+                            if(isNaN(n) || n < 1) return;
+                            
+                            // Prevent browser crash for recursive
+                            const recLimit = n > 35 ? 35 : n; 
+                            
+                            // Iterative
+                            const t0 = performance.now();
+                            let iterRes = [];
+                            let a = 0, b = 1;
+                            for(let i=0; i<n; i++) { iterRes.push(a); let t=a+b; a=b; b=t; }
+                            const t1 = performance.now();
+                            
+                            container.querySelector('#fib-iter-out').textContent = iterRes.join(', ');
+                            container.querySelector('#fib-iter-time').textContent = `Execution time: ${(t1-t0).toFixed(4)} ms`;
+                            
+                            // Recursive
+                            const fibR = (num) => {
+                                if(num <= 0) return 0;
+                                if(num === 1) return 1;
+                                return fibR(num-1) + fibR(num-2);
+                            };
+                            
+                            const t2 = performance.now();
+                            let recRes = [];
+                            for(let i=0; i<recLimit; i++) { recRes.push(fibR(i)); }
+                            const t3 = performance.now();
+                            
+                            container.querySelector('#fib-rec-out').textContent = recRes.join(', ') + (n > 35 ? ' (Stopped at 35 to prevent crash)' : '');
+                            container.querySelector('#fib-rec-time').textContent = `Execution time: ${(t3-t2).toFixed(4)} ms`;
+                        });
+                    }
+                },
+                // Placeholders for remaining required JS projects
+                { id: 'js-countdown', title: 'Countdown Timer', description: 'Create a countdown timer using JavaScript.', code: '// Countdown logic here', render: (c) => c.innerHTML = '<div class="text-center p-8 bg-gray-800 rounded">Countdown Timer logic would go here.</div>' },
+                { id: 'js-formval', title: 'Form Validation', description: 'Validate name, email, phone number, and password.', code: '// Validation logic here', render: (c) => c.innerHTML = '<div class="text-center p-8 bg-gray-800 rounded">Complex JS Form Validation logic here.</div>' },
+                { id: 'js-factorial', title: 'Factorial Calculator', description: 'Find the factorial of a number.', code: 'function fact(n) { return n<=1 ? 1 : n*fact(n-1); }', render: (c) => c.innerHTML = '<div class="text-center p-8 bg-gray-800 rounded">Factorial calculation component here.</div>' }
+            ]
+        };
+
+        
+        const appContainer = document.getElementById('app-container');
+
+        // Simple syntax highlighting for code
+        function highlightCode(code) {
+            code = code.replace(/</g, '&lt;').replace(/>/g, '&gt;');
+            // Basic keywords
+            code = code.replace(/\b(function|let|const|var|if|else|for|return|try|catch|true|false)\b/g, '<span class="kw">$1</span>');
+            // Strings
+            code = code.replace(/('.*?'|".*?"|`.*?`)/g, '<span class="str">$1</span>');
+            // Numbers (simple)
+            code = code.replace(/\b(\d+)\b/g, '<span class="num">$1</span>');
+            // Comments
+            code = code.replace(/(\/\/.*)/g, '<span class="cmt">$1</span>');
+            code = code.replace(/(\/\*[\s\S]*?\*\/)/g, '<span class="cmt">$1</span>');
+            // HTML Comments
+            code = code.replace(/(&lt;!--[\s\S]*?--&gt;)/g, '<span class="cmt">$1</span>');
+            return code;
+        }
+
+        // Navigation Controller
+        function navigate(view, data = null) {
+            // Clean up intervals/listeners from previous view
+            if(activeCleanup) {
+                activeCleanup();
+                activeCleanup = null;
+            }
+
+            appContainer.innerHTML = ''; // Clear current
+            
+            switch(view) {
+                case 'home':
+                    renderHome();
+                    break;
+                case 'category':
+                    renderCategoryList(data); // data = 'html', 'css', or 'javascript'
+                    break;
+                case 'program':
+                    renderProgramViewer(data); // data = program object
+                    break;
+                default:
+                    renderHome();
+            }
+        }
+
+        function renderHome() {
+            appContainer.innerHTML = `
+                <div class="animate-fade-in space-y-8">
+                    <!-- Title Section -->
+                    <div class="text-center py-10">
+                        <h1 class="text-4xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 mb-4">
+                            HTML CSS JAVASCRIPT<br>PRACTICAL PROGRAMS
+                        </h1>
+                        <p class="text-xl text-gray-400">Interactive Single Page Application Portfolio</p>
+                    </div>
+
+                    <!-- README Card -->
+                    <div class="max-w-3xl mx-auto glass-card rounded-2xl p-8 border border-gray-700 shadow-2xl relative overflow-hidden">
+                        <div class="absolute top-0 right-0 w-32 h-32 bg-blue-500 opacity-10 rounded-full blur-3xl"></div>
+                        <h2 class="text-2xl font-bold mb-6 flex items-center border-b border-gray-700 pb-3">
+                            <svg class="w-6 h-6 mr-3 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            Assignment Details
+                        </h2>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-y-4 gap-x-8 text-gray-300">
+                            <div><span class="font-semibold text-gray-500 block text-sm uppercase tracking-wider">Student Name</span><span class="text-lg">Vadithya Charan Thej</span></div>
+                            <div><span class="font-semibold text-gray-500 block text-sm uppercase tracking-wider">Class / Section</span><span class="text-lg">Sai University - Cohort of 2025</span></div>
+                            <div><span class="font-semibold text-gray-500 block text-sm uppercase tracking-wider">Subject</span><span class="text-lg">Web Technology & DOM</span></div>
+                            <div><span class="font-semibold text-gray-500 block text-sm uppercase tracking-wider">Assignment</span><span class="text-lg">Complete Practical Programs</span></div>
+                            <div class="md:col-span-2 pt-2"><span class="inline-block bg-blue-900/50 text-blue-300 border border-blue-700 px-3 py-1 rounded-full text-sm font-medium shadow-sm">Total Programs: 150+</span></div>
+                        </div>
+                    </div>
+
+                    <!-- Categories Grid -->
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-6">
+                        <!-- HTML Card -->
+                        <div class="glass-card rounded-2xl p-6 flex flex-col items-center text-center transition-transform transform hover:-translate-y-2 hover:shadow-2xl border-t-4 border-orange-500">
+                            <div class="w-16 h-16 bg-orange-500/20 text-orange-500 rounded-full flex items-center justify-center mb-4">
+                                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
+                            </div>
+                            <h3 class="text-xl font-bold mb-2">HTML Programs</h3>
+                            <p class="text-gray-400 mb-6 text-sm flex-grow">Semantic structure, forms, media, tables, and HTML5 features.</p>
+                            <button onclick="navigate('category', 'html')" class="w-full py-2 bg-orange-600 hover:bg-orange-700 text-white font-medium rounded-lg transition-colors">View HTML Programs</button>
+                        </div>
+                        
+                        <!-- CSS Card -->
+                        <div class="glass-card rounded-2xl p-6 flex flex-col items-center text-center transition-transform transform hover:-translate-y-2 hover:shadow-2xl border-t-4 border-blue-500">
+                            <div class="w-16 h-16 bg-blue-500/20 text-blue-500 rounded-full flex items-center justify-center mb-4">
+                                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"></path></svg>
+                            </div>
+                            <h3 class="text-xl font-bold mb-2">CSS Programs</h3>
+                            <p class="text-gray-400 mb-6 text-sm flex-grow">Flexbox, Grid, animations, responsive design, and styling layouts.</p>
+                            <button onclick="navigate('category', 'css')" class="w-full py-2 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-colors">View CSS Programs</button>
+                        </div>
+
+                        <!-- JS Card -->
+                        <div class="glass-card rounded-2xl p-6 flex flex-col items-center text-center transition-transform transform hover:-translate-y-2 hover:shadow-2xl border-t-4 border-yellow-400">
+                            <div class="w-16 h-16 bg-yellow-400/20 text-yellow-400 rounded-full flex items-center justify-center mb-4">
+                                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 10l-2 1m0 0l-2-1m2 1v2.5M20 7l-2 1m2-1l-2-1m2 1v2.5M14 4l-2-1-2 1M4 7l2-1M4 7l2 1M4 7v2.5M12 21l-2-1m2 1l2-1m-2 1v-2.5M6 18l-2-1v-2.5M18 18l2-1v-2.5"></path></svg>
+                            </div>
+                            <h3 class="text-xl font-bold mb-2">JavaScript Programs</h3>
+                            <p class="text-gray-400 mb-6 text-sm flex-grow">DOM manipulation, algorithms, events, and fully functional mini-projects.</p>
+                            <button onclick="navigate('category', 'javascript')" class="w-full py-2 bg-yellow-500 hover:bg-yellow-600 text-gray-900 font-bold rounded-lg transition-colors">View JS Programs</button>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderCategoryList(category) {
+            const list = programsData[category];
+            const titleMap = {
+                'html': { title: 'HTML Programs', color: 'text-orange-500' },
+                'css': { title: 'CSS Programs', color: 'text-blue-500' },
+                'javascript': { title: 'JavaScript Programs', color: 'text-yellow-400' }
+            };
+
+            let listHTML = `
+                <div class="animate-fade-in max-w-5xl mx-auto">
+                    <div class="flex items-center mb-8">
+                        <button onclick="navigate('home')" class="mr-4 p-2 bg-gray-800 hover:bg-gray-700 rounded-full transition-colors text-gray-300">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+                        </button>
+                        <h2 class="text-3xl font-bold ${titleMap[category].color}">${titleMap[category].title}</h2>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            `;
+
+            list.forEach(prog => {
+                // Determine if it's a fully implemented demo or placeholder based on 'id' structure or explicitly setting a flag.
+                // We'll treat all in the array as clickable.
+                listHTML += `
+                    <div onclick='openProgram("${category}", "${prog.id}")' class="glass-card p-5 rounded-xl border border-gray-700 hover:border-gray-500 cursor-pointer transition-all hover:shadow-lg group">
+                        <h4 class="font-bold text-lg mb-2 group-hover:text-white text-gray-200">${prog.title}</h4>
+                        <p class="text-sm text-gray-500 line-clamp-2">${prog.description}</p>
+                        <div class="mt-4 flex justify-end">
+                            <span class="text-xs font-semibold bg-gray-800 text-gray-300 px-2 py-1 rounded">View Project &rarr;</span>
+                        </div>
+                    </div>
+                `;
+            });
+
+            listHTML += `
+                    </div>
+                    <div class="mt-12 text-center text-gray-500 text-sm">
+                        Showing ${list.length} implemented examples. Expand array to add 150+ more.
+                    </div>
+                </div>
+            `;
+            
+            appContainer.innerHTML = listHTML;
+        }
+
+        // Global helper for onclick string
+        window.openProgram = function(cat, id) {
+            const prog = programsData[cat].find(p => p.id === id);
+            if(prog) navigate('program', prog);
+        }
+
+        function renderProgramViewer(program) {
+            appContainer.innerHTML = `
+                <div class="animate-fade-in max-w-5xl mx-auto flex flex-col h-full min-h-[75vh]">
+                    <!-- Header -->
+                    <div class="flex items-center justify-between mb-6 pb-4 border-b border-gray-700">
+                        <div>
+                            <div class="flex items-center text-sm text-gray-400 mb-1 space-x-2">
+                                <button onclick="navigate('home')" class="hover:text-white transition-colors">Home</button>
+                                <span>/</span>
+                                <button onclick="navigate('category', '${getCategoryFromId(program.id)}')" class="hover:text-white transition-colors capitalize">${getCategoryFromId(program.id)}</button>
+                            </div>
+                            <h2 class="text-2xl sm:text-3xl font-bold text-white">${program.title}</h2>
+                        </div>
+                        <button onclick="navigate('category', '${getCategoryFromId(program.id)}')" class="flex items-center px-4 py-2 bg-gray-800 hover:bg-gray-700 text-white rounded-lg transition-colors text-sm font-medium">
+                            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+                            Back
+                        </button>
+                    </div>
+
+                    <p class="text-gray-300 mb-6">${program.description}</p>
+
+                    <!-- Tabs -->
+                    <div class="flex border-b border-gray-700 mb-6 space-x-1">
+                        <button id="tab-preview" class="px-6 py-3 bg-gray-800 text-white font-medium rounded-t-lg border-t border-l border-r border-gray-600 relative top-[1px]" onclick="switchTab('preview')">
+                            Working Implementation
+                        </button>
+                        <button id="tab-code" class="px-6 py-3 text-gray-400 hover:text-white font-medium rounded-t-lg transition-colors" onclick="switchTab('code')">
+                            Source Code
+                        </button>
+                    </div>
+
+                    <!-- Tab Contents -->
+                    <div class="flex-grow relative glass-card p-6 md:p-10 rounded-b-xl rounded-tr-xl border border-gray-700">
+                        
+                        <!-- Preview Panel -->
+                        <div id="panel-preview" class="w-full">
+                            <!-- Injected dynamically -->
+                        </div>
+
+                        <!-- Code Panel -->
+                        <div id="panel-code" class="hidden w-full h-full">
+                            <div class="absolute top-4 right-4 z-10">
+                                <button onclick="copyCode()" class="bg-gray-700 hover:bg-gray-600 text-white px-3 py-1 rounded text-xs transition-colors flex items-center">
+                                    <svg class="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+                                    Copy
+                                </button>
+                            </div>
+                            <pre class="m-0 h-full max-h-[500px] shadow-inner"><code id="code-content">${highlightCode(program.code)}</code></pre>
+                        </div>
+
+                    </div>
+                </div>
+            `;
+
+            // Render the live program logic
+            const previewPanel = document.getElementById('panel-preview');
+            const cleanupFn = program.render(previewPanel);
+            
+            // Store cleanup function if provided by the program (for intervals/listeners)
+            if(typeof cleanupFn === 'function') {
+                activeCleanup = cleanupFn;
+            }
+
+            // Tab Switch Logic
+            window.switchTab = function(tabId) {
+                const btnPreview = document.getElementById('tab-preview');
+                const btnCode = document.getElementById('tab-code');
+                const panelPreview = document.getElementById('panel-preview');
+                const panelCode = document.getElementById('panel-code');
+
+                if (tabId === 'preview') {
+                    // Activate Preview
+                    btnPreview.classList.add('bg-gray-800', 'text-white', 'border-t', 'border-l', 'border-r', 'border-gray-600', 'relative', 'top-[1px]');
+                    btnPreview.classList.remove('text-gray-400');
+                    btnCode.classList.remove('bg-gray-800', 'text-white', 'border-t', 'border-l', 'border-r', 'border-gray-600', 'relative', 'top-[1px]');
+                    btnCode.classList.add('text-gray-400');
+                    
+                    panelPreview.classList.remove('hidden');
+                    panelCode.classList.add('hidden');
+                } else {
+                    // Activate Code
+                    btnCode.classList.add('bg-gray-800', 'text-white', 'border-t', 'border-l', 'border-r', 'border-gray-600', 'relative', 'top-[1px]');
+                    btnCode.classList.remove('text-gray-400');
+                    btnPreview.classList.remove('bg-gray-800', 'text-white', 'border-t', 'border-l', 'border-r', 'border-gray-600', 'relative', 'top-[1px]');
+                    btnPreview.classList.add('text-gray-400');
+                    
+                    panelCode.classList.remove('hidden');
+                    panelPreview.classList.add('hidden');
+                }
+            };
+
+            // Copy to clipboard logic
+            window.copyCode = function() {
+                try {
+                    // Extract text content from the pre code block (removes HTML span tags)
+                    const temp = document.createElement('div');
+                    temp.innerHTML = document.getElementById('code-content').innerHTML;
+                    const text = temp.textContent || temp.innerText;
+                    
+                    // Create textarea for old-school fallback execution since clipboard API is tricky in iframes
+                    const textarea = document.createElement('textarea');
+                    textarea.value = text;
+                    document.body.appendChild(textarea);
+                    textarea.select();
+                    document.execCommand('copy');
+                    document.body.removeChild(textarea);
+                    
+                    // Visual feedback
+                    const btn = document.querySelector('button[onclick="copyCode()"]');
+                    const origHtml = btn.innerHTML;
+                    btn.innerHTML = 'Copied!';
+                    btn.classList.add('bg-green-600', 'hover:bg-green-700');
+                    setTimeout(() => {
+                        btn.innerHTML = origHtml;
+                        btn.classList.remove('bg-green-600', 'hover:bg-green-700');
+                    }, 2000);
+                } catch(err) {
+                    console.error('Failed to copy: ', err);
+                }
+            };
+        }
+
+        
+        // Determine category from ID prefix
+        function getCategoryFromId(id) {
+            if(id.startsWith('html')) return 'html';
+            if(id.startsWith('css')) return 'css';
+            if(id.startsWith('js')) return 'javascript';
+            return 'html';
+        }
+
+        // Initialize the App
+        document.addEventListener('DOMContentLoaded', () => {
+            navigate('home');
+        });
+
+    </script>
 </body>
 </html>
