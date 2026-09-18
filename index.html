@@ -9,8 +9,9 @@
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #0f172a;
+            background-color: #050b14; /* Deep, dark space background */
             color: #f8fafc;
+            overflow-x: hidden;
         }
         
         /* Custom scrollbar for aesthetics */
@@ -19,33 +20,57 @@
             height: 8px;
         }
         ::-webkit-scrollbar-track {
-            background: #1e293b; 
+            background: rgba(30, 41, 59, 0.5); 
         }
         ::-webkit-scrollbar-thumb {
-            background: #475569; 
+            background: rgba(148, 163, 184, 0.4); 
             border-radius: 4px;
         }
         ::-webkit-scrollbar-thumb:hover {
-            background: #64748b; 
+            background: rgba(148, 163, 184, 0.8); 
         }
 
-        /* Glassmorphism effects */
+        /* PREMIUM GLASSMORPHISM EFFECT */
         .glass-card {
-            background: rgba(30, 41, 59, 0.7);
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.01));
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+            border-left: 1px solid rgba(255, 255, 255, 0.15);
+            border-right: 1px solid rgba(255, 255, 255, 0.05);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4);
+        }
+
+        .glass-inner {
+            background: rgba(0, 0, 0, 0.4);
             backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: inset 0 4px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        .glass-button {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.02));
             border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+        .glass-button:hover {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.05));
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transform: translateY(-1px);
         }
 
         /* Syntax highlighting simulation for code blocks */
         pre {
-            background-color: #1e1e1e !important;
+            background-color: rgba(15, 23, 42, 0.6) !important; /* Translucent to let background bleed through */
             border-radius: 0.5rem;
             padding: 1rem;
             overflow-x: auto;
             color: #d4d4d4;
             font-family: 'Courier New', Courier, monospace;
             font-size: 0.875rem;
+            box-shadow: inset 0 2px 10px rgba(0,0,0,0.5);
         }
         .kw { color: #569cd6; } /* Keyword */
         .fn { color: #dcdcaa; } /* Function */
@@ -53,53 +78,51 @@
         .num { color: #b5cea8; } /* Number */
         .cmt { color: #6a9955; } /* Comment */
 
-        /* CSS Grid Dashboard Specific Styles */
-        .demo-grid-container {
-            display: grid;
-            grid-template-areas: 
-                "header header header"
-                "sidebar main main"
-                "sidebar footer footer";
-            grid-template-columns: 200px 1fr 1fr;
-            grid-template-rows: auto 1fr auto;
-            gap: 10px;
-            height: 400px;
+        /* Floating Blobs Animation */
+        @keyframes blob {
+            0% { transform: translate(0px, 0px) scale(1); }
+            33% { transform: translate(30px, -50px) scale(1.1); }
+            66% { transform: translate(-20px, 20px) scale(0.9); }
+            100% { transform: translate(0px, 0px) scale(1); }
         }
-        @media (max-width: 640px) {
-            .demo-grid-container {
-                grid-template-areas: 
-                    "header"
-                    "sidebar"
-                    "main"
-                    "footer";
-                grid-template-columns: 1fr;
-            }
+        .animate-blob {
+            animation: blob 10s infinite alternate cubic-bezier(0.4, 0, 0.2, 1);
         }
+        .animation-delay-2000 { animation-delay: 2s; }
+        .animation-delay-4000 { animation-delay: 4s; }
         
-        /* Animations */
+        /* Fade In Animation */
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
         }
         .animate-fade-in {
-            animation: fadeIn 0.3s ease-out forwards;
+            animation: fadeIn 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
         }
     </style>
 </head>
-<body class="min-h-screen flex flex-col">
+<body class="min-h-screen flex flex-col relative">
 
-    <nav class="sticky top-0 z-50 glass-card border-b border-gray-700 shadow-lg">
+    <!-- Ambient Background Orbs -->
+    <div class="fixed top-0 left-0 w-full h-full overflow-hidden -z-10 pointer-events-none">
+        <div class="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] bg-blue-600 rounded-full mix-blend-screen filter blur-[150px] opacity-40 animate-blob"></div>
+        <div class="absolute top-[20%] right-[-10%] w-[400px] h-[400px] bg-purple-600 rounded-full mix-blend-screen filter blur-[150px] opacity-40 animate-blob animation-delay-2000"></div>
+        <div class="absolute bottom-[-20%] left-[20%] w-[600px] h-[600px] bg-emerald-600 rounded-full mix-blend-screen filter blur-[150px] opacity-30 animate-blob animation-delay-4000"></div>
+        <div class="absolute bottom-[10%] right-[20%] w-[300px] h-[300px] bg-pink-600 rounded-full mix-blend-screen filter blur-[120px] opacity-30 animate-blob"></div>
+    </div>
+
+    <nav class="sticky top-0 z-50 glass-card shadow-2xl">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16">
-                <div class="flex items-center space-x-3">
-                    <div class="flex-shrink-0 bg-blue-500 text-white p-2 rounded-lg font-bold text-xl">
+                <div class="flex items-center space-x-3 cursor-pointer" onclick="navigate('home')">
+                    <div class="flex-shrink-0 bg-gradient-to-br from-blue-400 to-purple-500 text-white p-2 rounded-xl font-bold text-xl shadow-lg border border-white/20">
                         &lt;/&gt;
                     </div>
-                    <span class="font-bold text-xl tracking-tight text-white hidden sm:block">Practical Lab</span>
+                    <span class="font-bold text-xl tracking-tight text-white hidden sm:block drop-shadow-md">Practical Lab</span>
                 </div>
                 <div>
-                    <button onclick="navigate('home')" class="text-gray-300 hover:text-white hover:bg-gray-700 px-4 py-2 rounded-md text-sm font-medium transition-colors border border-transparent hover:border-gray-600">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline-block mr-1 -mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <button onclick="navigate('home')" class="glass-button text-white px-5 py-2 rounded-lg text-sm font-medium flex items-center shadow-lg">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
                         </svg>
                         Home
@@ -109,18 +132,18 @@
         </div>
     </nav>
 
-    <main id="app-container" class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full">
+    <main id="app-container" class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full z-10">
         <!-- Dynamic content injected here -->
     </main>
 
-    <footer class="glass-card border-t border-gray-800 text-center py-6 mt-auto">
-        <p class="text-gray-400 text-sm">© 2026 Practical Programs Website | Built as a Single Page Application</p>
+    <footer class="glass-card text-center py-6 mt-auto z-10">
+        <p class="text-gray-300 text-sm font-medium tracking-wide">© 2026 Practical Programs Website | Built as a Single Page Application</p>
     </footer>
 
     <script>
         let activeCleanup = null;
 
-        // Base custom programs (Preserved from original code)
+        // Base custom programs 
         const programsData = {
             html: [
                 {
@@ -130,34 +153,36 @@
                     code: `<!-- HTML Registration Form -->\n<form class="space-y-4">\n    <div class="grid grid-cols-2 gap-4">\n        <div>\n            <label>First Name</label>\n            <input type="text" required class="input-field" />\n        </div>\n        <div>\n            <label>Last Name</label>\n            <input type="text" required class="input-field" />\n        </div>\n    </div>\n    <div>\n        <label>Email Address</label>\n        <input type="email" required class="input-field" />\n    </div>\n    <div>\n        <label>Date of Birth</label>\n        <input type="date" required class="input-field" />\n    </div>\n    <button type="submit" class="btn-primary">Register</button>\n</form>`,
                     render: (container) => {
                         container.innerHTML = `
-                            <div class="max-w-md mx-auto bg-gray-800 p-6 rounded-xl border border-gray-700">
-                                <h3 class="text-xl font-bold mb-4 text-center">Student Registration</h3>
-                                <form id="demo-reg-form" class="space-y-4">
-                                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                                        <div>
-                                            <label class="block text-sm font-medium text-gray-300 mb-1">First Name</label>
-                                            <input type="text" required class="w-full bg-gray-700 border border-gray-600 rounded-lg px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            <div class="h-full flex items-center justify-center">
+                                <div class="max-w-md w-full glass-inner p-8 rounded-2xl">
+                                    <h3 class="text-xl font-bold mb-6 text-center text-white drop-shadow-md">Student Registration</h3>
+                                    <form id="demo-reg-form" class="space-y-5">
+                                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                                            <div>
+                                                <label class="block text-sm font-medium text-gray-300 mb-1">First Name</label>
+                                                <input type="text" required class="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-2.5 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all shadow-inner backdrop-blur-md">
+                                            </div>
+                                            <div>
+                                                <label class="block text-sm font-medium text-gray-300 mb-1">Last Name</label>
+                                                <input type="text" required class="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-2.5 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all shadow-inner backdrop-blur-md">
+                                            </div>
                                         </div>
                                         <div>
-                                            <label class="block text-sm font-medium text-gray-300 mb-1">Last Name</label>
-                                            <input type="text" required class="w-full bg-gray-700 border border-gray-600 rounded-lg px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                            <label class="block text-sm font-medium text-gray-300 mb-1">Email</label>
+                                            <input type="email" required class="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-2.5 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all shadow-inner backdrop-blur-md">
                                         </div>
-                                    </div>
-                                    <div>
-                                        <label class="block text-sm font-medium text-gray-300 mb-1">Email</label>
-                                        <input type="email" required class="w-full bg-gray-700 border border-gray-600 rounded-lg px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-blue-500">
-                                    </div>
-                                    <div>
-                                        <label class="block text-sm font-medium text-gray-300 mb-1">Course</label>
-                                        <select class="w-full bg-gray-700 border border-gray-600 rounded-lg px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-blue-500">
-                                            <option>B.Tech Computer Science</option>
-                                            <option>B.Tech Electronics</option>
-                                            <option>BBA</option>
-                                        </select>
-                                    </div>
-                                    <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg transition-colors">Submit Registration</button>
-                                </form>
-                                <div id="form-msg" class="mt-3 text-sm text-green-400 hidden">Registration simulated successfully!</div>
+                                        <div>
+                                            <label class="block text-sm font-medium text-gray-300 mb-1">Course</label>
+                                            <select class="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-2.5 text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all shadow-inner backdrop-blur-md appearance-none">
+                                                <option class="bg-gray-800 text-white">B.Tech Computer Science</option>
+                                                <option class="bg-gray-800 text-white">B.Tech Electronics</option>
+                                                <option class="bg-gray-800 text-white">BBA</option>
+                                            </select>
+                                        </div>
+                                        <button type="submit" class="w-full bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white font-bold py-3 px-4 rounded-xl transition-all shadow-lg transform hover:-translate-y-0.5 border border-blue-400/30">Submit Registration</button>
+                                    </form>
+                                    <div id="form-msg" class="mt-4 text-sm font-medium text-green-400 text-center hidden bg-green-500/10 border border-green-500/20 py-2 rounded-lg">Registration simulated successfully!</div>
+                                </div>
                             </div>
                         `;
                         container.querySelector('#demo-reg-form').addEventListener('submit', (e) => {
@@ -176,13 +201,16 @@
                     code: `/* CSS Grid Layout */\n.demo-grid-container {\n    display: grid;\n    grid-template-areas: \n        "header header header"\n        "sidebar main main"\n        "sidebar footer footer";\n    grid-template-columns: 200px 1fr 1fr;\n    grid-template-rows: auto 1fr auto;\n    gap: 10px;\n    height: 400px;\n}\n.header { grid-area: header; }\n.sidebar { grid-area: sidebar; }\n.main { grid-area: main; }\n.footer { grid-area: footer; }`,
                     render: (container) => {
                         container.innerHTML = `
-                            <div class="demo-grid-container w-full bg-gray-900 p-2 rounded-xl border border-gray-700">
-                                <div class="bg-blue-600 rounded flex items-center justify-center font-bold" style="grid-area: header;">Header (Nav)</div>
-                                <div class="bg-gray-700 rounded flex items-center justify-center font-bold" style="grid-area: sidebar;">Sidebar (Menu)</div>
-                                <div class="bg-gray-800 rounded flex items-center justify-center font-bold p-4" style="grid-area: main;">
-                                    Main Content Area<br>Adapts via grid-template-areas
+                            <div class="h-full flex items-center justify-center p-4">
+                                <div class="w-full h-full min-h-[400px] glass-inner p-3 rounded-2xl flex flex-col gap-3 sm:grid" 
+                                     style="grid-template-areas: 'header header header' 'sidebar main main' 'sidebar footer footer'; grid-template-columns: 200px 1fr 1fr; grid-template-rows: auto 1fr auto;">
+                                    <div class="glass-button rounded-xl flex items-center justify-center font-bold text-white shadow-lg" style="grid-area: header; min-height: 60px;">Header (Nav)</div>
+                                    <div class="bg-white/5 border border-white/10 rounded-xl flex items-center justify-center font-bold text-gray-300 shadow-inner" style="grid-area: sidebar; min-height: 200px;">Sidebar (Menu)</div>
+                                    <div class="bg-white/10 border border-white/20 rounded-xl flex items-center justify-center font-bold text-white p-6 text-center shadow-lg backdrop-blur-md" style="grid-area: main;">
+                                        Main Content Area<br><span class="text-sm font-normal text-gray-300 mt-2 block">Adapts via grid-template-areas</span>
+                                    </div>
+                                    <div class="bg-blue-500/20 border border-blue-500/30 rounded-xl flex items-center justify-center font-bold text-blue-200 shadow-lg" style="grid-area: footer; min-height: 60px;">Footer</div>
                                 </div>
-                                <div class="bg-blue-900 rounded flex items-center justify-center font-bold" style="grid-area: footer;">Footer</div>
                             </div>
                         `;
                     }
@@ -196,20 +224,20 @@
                     code: `function fibIterative(n) {\n    let result = [];\n    let a = 0, b = 1, temp;\n    for(let i = 0; i < n; i++) {\n        result.push(a);\n        temp = a + b;\n        a = b;\n        b = temp;\n    }\n    return result;\n}`,
                     render: (container) => {
                         container.innerHTML = `
-                            <div class="max-w-2xl mx-auto bg-gray-800 p-6 rounded-xl border border-gray-700 text-center">
-                                <h3 class="text-xl font-bold mb-4">Fibonacci Result (n=10)</h3>
-                                <p class="font-mono text-emerald-400 bg-gray-900 p-4 rounded">0, 1, 1, 2, 3, 5, 8, 13, 21, 34</p>
+                            <div class="h-full flex items-center justify-center">
+                                <div class="max-w-2xl w-full glass-inner p-10 rounded-2xl text-center">
+                                    <h3 class="text-2xl font-bold mb-6 text-white drop-shadow-md">Fibonacci Result (n=10)</h3>
+                                    <div class="bg-black/50 border border-emerald-500/30 p-6 rounded-xl shadow-[inset_0_0_20px_rgba(16,185,129,0.1)]">
+                                        <p class="font-mono text-emerald-400 text-lg tracking-widest drop-shadow-[0_0_8px_rgba(52,211,153,0.5)]">0, 1, 1, 2, 3, 5, 8, 13, 21, 34</p>
+                                    </div>
+                                </div>
                             </div>
                         `;
                     }
                 }
-            ]
+            ],
+            nodejs: [] 
         };
-
-        // =================================================================
-        // DYNAMIC MASS-DATA INJECTION ENGINE
-        // This populates the remaining 150 questions automatically
-        // =================================================================
 
         const rawData = {
             html: [
@@ -369,7 +397,279 @@
                 "Write a program to count the number of words in a string.",
                 "Write a program to find the frequency of characters in a string.",
                 "Write a program to demonstrate regular expressions in JavaScript.",
-                "Write a program to validate an email address using a regular expression."
+                "Write a program to validate an email address using a regular expression.",
+                "Create a webpage and use JavaScript to add new elements dynamically.",
+                "Create a program to remove HTML elements dynamically.",
+                "Create a program to change CSS styles using JavaScript.",
+                "Create a program to change multiple HTML elements simultaneously.",
+                "Demonstrate getElementById() and getElementsByClassName().",
+                "Demonstrate querySelector() and querySelectorAll().",
+                "Create a program to create and remove CSS classes dynamically.",
+                "Create a dynamic table using JavaScript.",
+                "Create a program to add and delete rows from a table.",
+                "Create a program to search/filter table records.",
+                "Create a live character counter for a textarea.",
+                "Create a password show/hide feature.",
+                "Create a dynamic dropdown list.",
+                "Create a dependent dropdown such as Country → State → City.",
+                "Create an image slideshow/carousel using JavaScript.",
+                "Demonstrate mouse events using JavaScript.",
+                "Demonstrate keyboard events using JavaScript.",
+                "Demonstrate form events such as submit, change, focus, and blur.",
+                "Create a webpage that responds to double-click events.",
+                "Create a program using event bubbling and event capturing.",
+                "Demonstrate event delegation.",
+                "Create a keyboard-controlled webpage/game.",
+                "Create a drag-and-drop application using JavaScript.",
+                "Create a student registration form with JavaScript validation.",
+                "Create a login form with username and password validation.",
+                "Create a password strength checker.",
+                "Create a signup form with password confirmation.",
+                "Create a feedback form with validation.",
+                "Create a college admission form with JavaScript validation.",
+                "Display validation error messages dynamically without reloading the page.",
+                "Demonstrate the Window object.",
+                "Demonstrate the Navigator object.",
+                "Demonstrate the Location object.",
+                "Demonstrate the History object.",
+                "Create a program using localStorage.",
+                "Create a program using sessionStorage.",
+                "Create a shopping cart using localStorage.",
+                "Create a theme switcher (light/dark mode) using localStorage.",
+                "Create a digital calculator.",
+                "Create a digital clock.",
+                "Create a stopwatch.",
+                "Create a countdown timer.",
+                "Create a to-do list application.",
+                "Create a weather application using an API.",
+                "Create a quiz application.",
+                "Create a number guessing game.",
+                "Create a tic-tac-toe game.",
+                "Create a simple expense tracker.",
+                "Create a student marks/grade calculator.",
+                "Create a simple shopping cart.",
+                "Create a notes application using localStorage.",
+                "Create a random password generator.",
+                "Create a BMI calculator.",
+                "Create a currency converter using an API.",
+                "Create a complete interactive portfolio website using HTML, CSS, and JavaScript.",
+                "Change the text content of an HTML element using JavaScript.",
+                "Change the HTML content of an element using innerHTML.",
+                "Change the style of an HTML element dynamically.",
+                "Change the background color of an element when a button is clicked.",
+                "Create a new HTML element dynamically and add it to the webpage.",
+                "Remove an existing HTML element dynamically.",
+                "Replace an existing HTML element with a new element.",
+                "Add and remove CSS classes using JavaScript.",
+                "Toggle a CSS class using JavaScript.",
+                "Change the attributes of an HTML element dynamically.",
+                "Create a dynamic unordered list from an array.",
+                "Create a dynamic ordered list from user input.",
+                "Create a dynamic student table using JavaScript.",
+                "Add new rows to an HTML table dynamically.",
+                "Delete a selected row from an HTML table.",
+                "Edit table data dynamically.",
+                "Create a searchable/filterable table.",
+                "Sort table records using JavaScript.",
+                "Create a dynamic dropdown menu using JavaScript.",
+                "Add options dynamically to a <select> element.",
+                "Create a dependent dropdown — Country → State → City.",
+                "Create an image gallery dynamically from an array of image data.",
+                "Create an image slideshow using DOM manipulation.",
+                "Create a show/hide password feature.",
+                "Create a show/hide content button.",
+                "Create a tabs interface using DOM manipulation.",
+                "Create an accordion using JavaScript.",
+                "Create a modal popup using JavaScript.",
+                "Create a tooltip dynamically.",
+                "Create a live character counter for a textarea.",
+                "Create a live word counter.",
+                "Create a program to dynamically display the current date and time.",
+                "Create a to-do list using DOM manipulation.",
+                "Create a program to add, edit, and delete to-do items.",
+                "Demonstrate createElement(), appendChild(), remove(), and replaceChild().",
+                "Demonstrate the onclick event.",
+                "Demonstrate the ondblclick event.",
+                "Demonstrate onmouseover and onmouseout.",
+                "Demonstrate onmousedown and onmouseup.",
+                "Demonstrate the onmousemove event.",
+                "Demonstrate keyboard events using keydown.",
+                "Demonstrate keyboard events using keyup.",
+                "Create a webpage that displays the key pressed by the user.",
+                "Create a program that counts the number of keyboard key presses.",
+                "Demonstrate the focus and blur events.",
+                "Demonstrate the change event.",
+                "Demonstrate the input event.",
+                "Demonstrate the submit event.",
+                "Demonstrate the reset event.",
+                "Create a button that changes the background color when clicked.",
+                "Create a button that changes font size dynamically.",
+                "Create a webpage with multiple buttons having different event handlers.",
+                "Demonstrate event listeners using addEventListener().",
+                "Add multiple event listeners to a single element.",
+                "Remove an event listener using removeEventListener().",
+                "Demonstrate event bubbling.",
+                "Demonstrate event capturing.",
+                "Demonstrate event delegation.",
+                "Create a drag-and-drop application.",
+                "Create a mouse coordinate tracker.",
+                "Create a keyboard-controlled moving object.",
+                "Create a click counter.",
+                "Create a double-click counter.",
+                "Create a reaction-time game.",
+                "Create a simple keyboard typing test.",
+                "Create a student registration form and validate all fields.",
+                "Create a login form with username and password validation.",
+                "Validate a name field to accept only alphabets.",
+                "Validate an age field using JavaScript.",
+                "Validate a mobile phone number.",
+                "Validate an email address.",
+                "Validate a password based on minimum length.",
+                "Create a strong password validator.",
+                "Validate password and confirm password fields.",
+                "Validate a date of birth field.",
+                "Validate a gender selection.",
+                "Validate radio buttons.",
+                "Validate checkbox selection.",
+                "Validate a dropdown/select box.",
+                "Validate a textarea.",
+                "Create a form with required-field validation.",
+                "Display error messages beside individual form fields.",
+                "Display a success message after successful form submission.",
+                "Prevent form submission when validation fails.",
+                "Validate a form using regular expressions.",
+                "Validate an email using a regular expression.",
+                "Validate a phone number using a regular expression.",
+                "Validate a password using a regular expression.",
+                "Create a real-time form validation system.",
+                "Validate fields using the input, change, focus, and blur events.",
+                "Create a password strength meter.",
+                "Create a show/hide password option.",
+                "Create a registration form with password confirmation.",
+                "Create a college admission form with complete validation.",
+                "Create a job application form with validation.",
+                "Create a feedback form with validation.",
+                "Create a contact form with validation.",
+                "Create a multi-step registration form.",
+                "Create a form that displays a preview of entered information before submission.",
+                "Create a form that calculates and displays age from date of birth.",
+                "Create a marks entry form and calculate total, average, and grade.",
+                "Create an employee salary form and calculate salary details.",
+                "Create a shopping order form and calculate the total price.",
+                "Create a form with dynamic fields based on user selection.",
+                "Create a form that validates input and displays errors without page reload.",
+                "Demonstrate the Window object.",
+                "Demonstrate alert(), confirm(), and prompt().",
+                "Create a program using setTimeout().",
+                "Create a program using setInterval().",
+                "Create a digital clock using setInterval().",
+                "Create a countdown timer.",
+                "Create a stopwatch.",
+                "Demonstrate the Location object.",
+                "Create a button to redirect the user to another webpage.",
+                "Display the current webpage URL using JavaScript.",
+                "Demonstrate the History object.",
+                "Create buttons for Back, Forward, and Reload browser operations.",
+                "Demonstrate the Navigator object.",
+                "Display browser information using JavaScript.",
+                "Display the user's screen width and height.",
+                "Detect whether the browser is online or offline.",
+                "Display the current browser language.",
+                "Demonstrate browser geolocation.",
+                "Display the user's current geographical coordinates using the Geolocation API.",
+                "Create a webpage that updates information when the browser goes online/offline.",
+                "Store a username using localStorage.",
+                "Retrieve and display data from localStorage.",
+                "Update data stored in localStorage.",
+                "Delete an item from localStorage.",
+                "Clear all localStorage data.",
+                "Store multiple values using localStorage.",
+                "Store an array in localStorage using JSON.",
+                "Store a JavaScript object in localStorage.",
+                "Create a student record system using localStorage.",
+                "Create a to-do list using localStorage.",
+                "Create a notes application using localStorage.",
+                "Create a shopping cart using localStorage.",
+                "Create a login preference system using localStorage.",
+                "Create a dark/light theme switcher using localStorage.",
+                "Save the user's preferred font size using localStorage.",
+                "Create a recently viewed items feature using localStorage.",
+                "Create a visitor counter using browser storage.",
+                "Compare localStorage and sessionStorage.",
+                "Store temporary form data using sessionStorage.",
+                "Create a multi-page form using sessionStorage.",
+                "Save form data automatically using localStorage.",
+                "Restore previously entered form data after refreshing the page.",
+                "Create a shopping cart that persists after page refresh.",
+                "Create a student marks database using localStorage.",
+                "Create a CRUD application using localStorage — Create, Read, Update, and Delete records."
+            ],
+            nodejs: [
+                "Implement a basic Client-Server Architecture using Node.js.",
+                "Create a basic HTTP Server using Node.js.",
+                "Demonstrate the Request-Response Cycle in a server-side application.",
+                "Create a Node.js application using built-in modules.",
+                "Demonstrate the File System (fs) module.",
+                "Demonstrate the Path (path) module.",
+                "Create and use custom Node.js modules.",
+                "Install and use packages using npm.",
+                "Demonstrate Callbacks, Promises, and Async/Await in Node.js.",
+                "Implement Error Handling in a Node.js application.",
+                "Create a basic Express.js application.",
+                "Handle GET and POST requests using Express.",
+                "Serve static files using Express.",
+                "Send HTML and JSON responses using Express.",
+                "Create an Express application with a modular project structure.",
+                "Implement basic routing using Express.",
+                "Implement route parameters and query parameters.",
+                "Create multiple routes using Express Router.",
+                "Implement 404 / Not Found route handling.",
+                "Create modular routes for users, products, or students.",
+                "Create and implement custom middleware.",
+                "Implement logging middleware.",
+                "Implement request validation middleware.",
+                "Implement authentication middleware.",
+                "Implement error-handling middleware.",
+                "Demonstrate the execution order of middleware.",
+                "Create and manage cookies using Express.",
+                "Read and delete cookies using Express.",
+                "Implement session management in Express.",
+                "Implement login and logout using sessions.",
+                "Create protected routes using session authentication.",
+                "Connect a Node.js application to a database.",
+                "Create and manage database tables/collections.",
+                "Insert data into a database using Node.js.",
+                "Retrieve data from a database using Node.js.",
+                "Update database records using Node.js.",
+                "Delete database records using Node.js.",
+                "Implement CRUD operations using Node.js and Express.",
+                "Create a Student Management CRUD application.",
+                "Create a User Management CRUD application.",
+                "Create a Product Management CRUD application.",
+                "Implement CRUD operations with database connectivity.",
+                "Implement input validation for CRUD operations.",
+                "Implement User Registration.",
+                "Implement User Login and Logout.",
+                "Implement Password Hashing.",
+                "Implement Password Verification.",
+                "Implement JWT-based Authentication.",
+                "Create Protected API Routes using authentication.",
+                "Implement Role-Based Authorization.",
+                "Create Admin and User roles.",
+                "Restrict specific routes based on user roles.",
+                "Implement Authorization Middleware.",
+                "Create a basic RESTful API using Express.js.",
+                "Implement a GET REST API.",
+                "Implement a POST REST API.",
+                "Implement a PUT/PATCH REST API.",
+                "Implement a DELETE REST API.",
+                "Implement proper HTTP Status Codes in REST APIs.",
+                "Implement API Error Handling.",
+                "Implement API Request Validation.",
+                "Test REST APIs using Postman.",
+                "Create a Student REST API with Database Connectivity.",
+                "Create a Product REST API with CRUD Operations.",
+                "Create a User REST API with Authentication and Authorization."
             ]
         };
 
@@ -397,29 +697,135 @@
                 if (titleLC.includes('api') || titleLC.includes('fetch')) return `// Solution for: ${title}\nasync function fetchData() {\n    try {\n        let response = await fetch('https://jsonplaceholder.typicode.com/posts/1');\n        let data = await response.json();\n        console.log(data);\n    } catch (error) {\n        console.error('Error fetching data:', error);\n    }\n}`;
                 return `// Solution for: ${title}\nfunction executeLogic() {\n    // Implementation logic\n    console.log("Logic executed for: ${title}");\n}\n\nexecuteLogic();`;
             }
+
+            if (type === 'nodejs') {
+                if (titleLC.includes('express') || titleLC.includes('middleware') || titleLC.includes('route')) {
+                    return `// Solution for: ${title}\nconst express = require('express');\nconst app = express();\n\napp.use(express.json()); // Built-in middleware\n\napp.get('/', (req, res) => {\n    res.send('Express server running!');\n});\n\napp.listen(3000, () => {\n    console.log('Server is running on http://localhost:3000');\n});`;
+                }
+                if (titleLC.includes('api') || titleLC.includes('crud')) {
+                    return `// Solution for: ${title}\nconst express = require('express');\nconst app = express();\napp.use(express.json());\n\n// REST API Mock Endpoint\napp.get('/api/data', (req, res) => {\n    res.status(200).json({\n        success: true,\n        message: 'Data fetched successfully',\n        data: []\n    });\n});\n\napp.listen(3000);`;
+                }
+                return `// Solution for: ${title}\nconst http = require('http');\n\nconst server = http.createServer((req, res) => {\n    res.writeHead(200, {'Content-Type': 'text/plain'});\n    res.end('Hello from Node.js!');\n});\n\nserver.listen(3000, () => {\n    console.log('Server started on port 3000');\n});`;
+            }
         }
 
-        // Inject all questions dynamically
+        // Inject all questions dynamically with LIVE Iframe Rendering!
         Object.keys(rawData).forEach(category => {
             rawData[category].forEach((title, index) => {
                 programsData[category].push({
-                    id: `${category}-q-${index + 100}`, // +100 to avoid ID collisions
+                    id: `${category}-q-${index + 100}`, 
                     title: title,
                     description: `Practical assignment solution for: ${title}`,
                     code: generateSolution(title, category),
                     render: (container) => {
-                        container.innerHTML = `
-                            <div class="h-full flex items-center justify-center min-h-[300px]">
-                                <div class="max-w-md mx-auto bg-gray-800 p-8 rounded-2xl border border-gray-700 text-center shadow-lg">
-                                    <div class="w-16 h-16 bg-gray-700 text-gray-400 rounded-full flex items-center justify-center mx-auto mb-4">
-                                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
+                        
+                        // Node.js cannot be securely previewed in an iframe, so provide a functional button switch
+                        if (category === 'nodejs') {
+                            container.innerHTML = `
+                                <div class="h-full flex items-center justify-center">
+                                    <div class="max-w-md mx-auto glass-inner p-8 rounded-2xl text-center shadow-2xl">
+                                        <div class="w-20 h-20 bg-gradient-to-br from-green-400 to-green-600 text-white rounded-full flex items-center justify-center mx-auto mb-6 shadow-[0_0_20px_rgba(34,197,94,0.4)]">
+                                            <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01"></path></svg>
+                                        </div>
+                                        <h3 class="text-2xl font-bold mb-3 text-white drop-shadow-md">Server-Side Environment</h3>
+                                        <p class="text-gray-300 text-base mb-8 leading-relaxed">Node.js scripts require a backend terminal environment to execute and cannot be visually rendered in a browser frame.</p>
+                                        <button onclick="switchTab('code')" class="glass-button px-6 py-3 text-white text-sm font-bold rounded-xl transition-all shadow-lg w-full flex justify-center items-center">
+                                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
+                                            View Source Code
+                                        </button>
                                     </div>
-                                    <h3 class="text-xl font-bold mb-2 text-white">Preview Component</h3>
-                                    <p class="text-gray-400 text-sm mb-4">The visual output for "<span class="text-gray-200">${title}</span>" would render here.</p>
-                                    <span class="inline-block px-3 py-1 bg-gray-700 text-xs font-semibold rounded text-blue-400">View Source Code</span>
                                 </div>
+                            `;
+                            return;
+                        }
+
+                        // Generate the live preview HTML based on category
+                        let iframeContent = '';
+                        let solutionCode = generateSolution(title, category);
+                        
+                        if (category === 'html') {
+                            iframeContent = solutionCode;
+                        } else if (category === 'css') {
+                            iframeContent = `
+                                <!DOCTYPE html>
+                                <html>
+                                <head>
+                                    <style>
+                                        ${solutionCode}
+                                        body { padding: 20px; font-family: sans-serif; background: #f8fafc; margin: 0; }
+                                    </style>
+                                </head>
+                                <body>
+                                    <div class="container grid-container box element">
+                                        <h2>CSS Output</h2>
+                                        <p>The generated CSS rules have been applied to this document.</p>
+                                        <button style="padding:10px 15px; border:none; background:#3b82f6; color:white; border-radius:5px; cursor:pointer;">Sample Element</button>
+                                    </div>
+                                </body>
+                                </html>
+                            `;
+                        } else if (category === 'javascript') {
+                            iframeContent = `
+                                <!DOCTYPE html>
+                                <html>
+                                <head>
+                                    <style>
+                                        body { font-family: 'Courier New', monospace; background: #1e1e1e; color: #10b981; padding: 20px; font-size: 14px; margin: 0; }
+                                        .log-title { color: #9ca3af; margin-bottom: 10px; font-weight: bold; font-family: sans-serif; text-transform: uppercase; letter-spacing: 1px; font-size: 12px; }
+                                        .log-entry { margin-bottom: 4px; border-left: 2px solid #3b82f6; padding-left: 10px; }
+                                        .err-entry { border-left-color: #ef4444; color: #ef4444; }
+                                    </style>
+                                </head>
+                                <body>
+                                    <div class="log-title">Interactive Console Output</div>
+                                    <div id="console-output"></div>
+                                    <script>
+                                        const out = document.getElementById('console-output');
+                                        const originalLog = console.log;
+                                        console.log = function(...args) {
+                                            originalLog(...args);
+                                            out.innerHTML += '<div class="log-entry">> ' + args.join(' ') + '</div>';
+                                        };
+                                        const originalError = console.error;
+                                        console.error = function(...args) {
+                                            originalError(...args);
+                                            out.innerHTML += '<div class="log-entry err-entry">> Error: ' + args.join(' ') + '</div>';
+                                        };
+                                        try {
+                                            ${solutionCode}
+                                        } catch(e) {
+                                            console.error(e.message);
+                                        }
+                                    <\/script>
+                                </body>
+                                </html>
+                            `;
+                        }
+
+                        // Inject the Iframe framework
+                        container.innerHTML = `
+                            <div class="w-full h-full min-h-[450px] flex flex-col glass-inner rounded-xl overflow-hidden border border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.5)]">
+                                <div class="bg-black/40 px-4 py-3 border-b border-white/10 flex items-center backdrop-blur-md">
+                                    <span class="flex space-x-2 mr-4">
+                                        <div class="w-3 h-3 rounded-full bg-red-500 shadow-[0_0_5px_rgba(239,68,68,0.6)]"></div>
+                                        <div class="w-3 h-3 rounded-full bg-yellow-400 shadow-[0_0_5px_rgba(250,204,21,0.6)]"></div>
+                                        <div class="w-3 h-3 rounded-full bg-green-500 shadow-[0_0_5px_rgba(34,197,94,0.6)]"></div>
+                                    </span>
+                                    <span class="text-xs text-gray-300 font-mono tracking-wider">live-preview.html</span>
+                                </div>
+                                <iframe class="flex-grow w-full bg-white/95"></iframe>
                             </div>
                         `;
+
+                        // Execute the code inside the newly mounted iframe
+                        setTimeout(() => {
+                            const iframe = container.querySelector('iframe');
+                            if (iframe && iframe.contentWindow) {
+                                iframe.contentWindow.document.open();
+                                iframe.contentWindow.document.write(iframeContent);
+                                iframe.contentWindow.document.close();
+                            }
+                        }, 50);
                     }
                 });
             });
@@ -431,10 +837,9 @@
 
         const appContainer = document.getElementById('app-container');
 
-        // Simple syntax highlighting for code
         function highlightCode(code) {
             code = code.replace(/</g, '&lt;').replace(/>/g, '&gt;');
-            code = code.replace(/\b(function|let|const|var|if|else|for|return|try|catch|true|false|async|await)\b/g, '<span class="kw">$1</span>');
+            code = code.replace(/\b(function|let|const|var|if|else|for|return|try|catch|true|false|async|await|require|module|exports)\b/g, '<span class="kw">$1</span>');
             code = code.replace(/('.*?'|".*?"|`.*?`)/g, '<span class="str">$1</span>');
             code = code.replace(/\b(\d+)\b/g, '<span class="num">$1</span>');
             code = code.replace(/(\/\/.*)/g, '<span class="cmt">$1</span>');
@@ -461,68 +866,76 @@
 
         function renderHome() {
             appContainer.innerHTML = `
-                <div class="animate-fade-in space-y-8">
+                <div class="animate-fade-in space-y-10">
                     <!-- Title Section -->
-                    <div class="text-center py-10">
-                        <h1 class="text-4xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 mb-4">
+                    <div class="text-center py-12">
+                        <h1 class="text-5xl md:text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 mb-6 drop-shadow-[0_2px_20px_rgba(255,255,255,0.1)]">
                             HTML CSS JAVASCRIPT<br>PRACTICAL PROGRAMS
                         </h1>
-                        <p class="text-xl text-gray-400">Interactive Single Page Application Portfolio</p>
+                        <p class="text-xl text-blue-200/80 font-light tracking-wide">Interactive Single Page Application Portfolio</p>
                     </div>
 
                     <!-- README Card -->
-                    <div class="max-w-3xl mx-auto glass-card rounded-2xl p-8 border border-gray-700 shadow-2xl relative overflow-hidden">
-                        <div class="absolute top-0 right-0 w-32 h-32 bg-blue-500 opacity-10 rounded-full blur-3xl"></div>
-                        <h2 class="text-2xl font-bold mb-6 flex items-center border-b border-gray-700 pb-3">
-                            <svg class="w-6 h-6 mr-3 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    <div class="max-w-3xl mx-auto glass-card rounded-3xl p-10 relative overflow-hidden">
+                        <div class="absolute -top-20 -right-20 w-64 h-64 bg-blue-500 opacity-20 rounded-full blur-[80px]"></div>
+                        <h2 class="text-3xl font-bold mb-8 flex items-center border-b border-white/10 pb-4 text-white drop-shadow-md">
+                            <svg class="w-8 h-8 mr-4 text-blue-400 drop-shadow-[0_0_10px_rgba(96,165,250,0.8)]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                             Assignment Details
                         </h2>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-y-4 gap-x-8 text-gray-300">
-                            <div><span class="font-semibold text-gray-500 block text-sm uppercase tracking-wider">Student Name</span><span class="text-lg text-white font-medium">Vadithya Charan Thej</span></div>
-                            <div><span class="font-semibold text-gray-500 block text-sm uppercase tracking-wider">Class / Section</span><span class="text-lg">Sai University - Cohort of 2025</span></div>
-                            <div><span class="font-semibold text-gray-500 block text-sm uppercase tracking-wider">Subject</span><span class="text-lg">Web Technology & DOM</span></div>
-                            <div><span class="font-semibold text-gray-500 block text-sm uppercase tracking-wider">Assignment</span><span class="text-lg">Complete Practical Programs</span></div>
-                            <div class="md:col-span-2 pt-2">
-                                <span class="inline-block bg-blue-900/50 text-blue-300 border border-blue-700 px-3 py-1 rounded-full text-sm font-medium shadow-sm">
-                                    Total Programs: ${programsData.html.length + programsData.css.length + programsData.javascript.length}
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-y-6 gap-x-8 text-gray-200">
+                            <div class="glass-inner p-4 rounded-xl"><span class="font-semibold text-blue-300 block text-xs uppercase tracking-wider mb-1">Student Name</span><span class="text-lg font-medium text-white">Lucky</span></div>
+                            <div class="glass-inner p-4 rounded-xl"><span class="font-semibold text-blue-300 block text-xs uppercase tracking-wider mb-1">Class / Section</span><span class="text-lg text-white">Sec 7</span></div>
+                            <div class="glass-inner p-4 rounded-xl"><span class="font-semibold text-blue-300 block text-xs uppercase tracking-wider mb-1">Subject</span><span class="text-lg text-white">Web Technology & DOM</span></div>
+                            <div class="glass-inner p-4 rounded-xl"><span class="font-semibold text-blue-300 block text-xs uppercase tracking-wider mb-1">Assignment</span><span class="text-lg text-white">Complete Practical Programs</span></div>
+                            <div class="md:col-span-2 pt-2 flex justify-center mt-2">
+                                <span class="inline-flex items-center bg-gradient-to-r from-blue-600/40 to-purple-600/40 border border-white/20 px-6 py-2 rounded-full text-md font-bold text-white shadow-[0_0_15px_rgba(0,0,0,0.3)] backdrop-blur-md">
+                                    <div class="w-2 h-2 rounded-full bg-green-400 mr-3 animate-pulse"></div>
+                                    Total Programs Loaded: ${programsData.html.length + programsData.css.length + programsData.javascript.length + programsData.nodejs.length}
                                 </span>
                             </div>
                         </div>
                     </div>
 
                     <!-- Categories Grid -->
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-6">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 pt-8">
                         <!-- HTML Card -->
-                        <div class="glass-card rounded-2xl p-6 flex flex-col items-center text-center transition-transform transform hover:-translate-y-2 hover:shadow-2xl border-t-4 border-orange-500">
-                            <div class="w-16 h-16 bg-orange-500/20 text-orange-500 rounded-full flex items-center justify-center mb-4">
-                                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
+                        <div class="glass-card rounded-3xl p-8 flex flex-col items-center text-center transition-all duration-300 hover:-translate-y-3 hover:shadow-[0_15px_40px_rgba(249,115,22,0.2)] border-t-[3px] border-t-orange-500 group">
+                            <div class="w-20 h-20 bg-gradient-to-br from-orange-400/20 to-orange-600/20 border border-orange-500/30 text-orange-400 rounded-2xl flex items-center justify-center mb-6 shadow-[0_0_20px_rgba(249,115,22,0.15)] group-hover:scale-110 transition-transform">
+                                <svg class="w-10 h-10 drop-shadow-[0_0_8px_rgba(249,115,22,0.5)]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
                             </div>
-                            <h3 class="text-xl font-bold mb-2">HTML Programs</h3>
-                            <p class="text-gray-400 mb-2 text-sm flex-grow">Semantic structure, forms, media, tables, and HTML5 features.</p>
-                            <p class="text-xs text-orange-400 font-bold mb-4">${programsData.html.length} Projects</p>
-                            <button onclick="navigate('category', 'html')" class="w-full py-2 bg-orange-600 hover:bg-orange-700 text-white font-medium rounded-lg transition-colors">View Programs</button>
+                            <h3 class="text-2xl font-bold mb-3 text-white">HTML</h3>
+                            <p class="text-blue-100/60 mb-6 text-sm flex-grow leading-relaxed">Semantic structure, forms, media, tables, and HTML5 features.</p>
+                            <button onclick="navigate('category', 'html')" class="w-full py-3 bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-400 hover:to-orange-500 text-white font-bold rounded-xl transition-all shadow-[0_4px_15px_rgba(249,115,22,0.4)]">View ${programsData.html.length} Projects</button>
                         </div>
                         
                         <!-- CSS Card -->
-                        <div class="glass-card rounded-2xl p-6 flex flex-col items-center text-center transition-transform transform hover:-translate-y-2 hover:shadow-2xl border-t-4 border-blue-500">
-                            <div class="w-16 h-16 bg-blue-500/20 text-blue-500 rounded-full flex items-center justify-center mb-4">
-                                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"></path></svg>
+                        <div class="glass-card rounded-3xl p-8 flex flex-col items-center text-center transition-all duration-300 hover:-translate-y-3 hover:shadow-[0_15px_40px_rgba(59,130,246,0.2)] border-t-[3px] border-t-blue-500 group">
+                            <div class="w-20 h-20 bg-gradient-to-br from-blue-400/20 to-blue-600/20 border border-blue-500/30 text-blue-400 rounded-2xl flex items-center justify-center mb-6 shadow-[0_0_20px_rgba(59,130,246,0.15)] group-hover:scale-110 transition-transform">
+                                <svg class="w-10 h-10 drop-shadow-[0_0_8px_rgba(59,130,246,0.5)]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"></path></svg>
                             </div>
-                            <h3 class="text-xl font-bold mb-2">CSS Programs</h3>
-                            <p class="text-gray-400 mb-2 text-sm flex-grow">Flexbox, Grid, animations, responsive design, and styling layouts.</p>
-                            <p class="text-xs text-blue-400 font-bold mb-4">${programsData.css.length} Projects</p>
-                            <button onclick="navigate('category', 'css')" class="w-full py-2 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-colors">View Programs</button>
+                            <h3 class="text-2xl font-bold mb-3 text-white">CSS</h3>
+                            <p class="text-blue-100/60 mb-6 text-sm flex-grow leading-relaxed">Flexbox, Grid, animations, responsive design, and styling layouts.</p>
+                            <button onclick="navigate('category', 'css')" class="w-full py-3 bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-400 hover:to-blue-500 text-white font-bold rounded-xl transition-all shadow-[0_4px_15px_rgba(59,130,246,0.4)]">View ${programsData.css.length} Projects</button>
                         </div>
 
                         <!-- JS Card -->
-                        <div class="glass-card rounded-2xl p-6 flex flex-col items-center text-center transition-transform transform hover:-translate-y-2 hover:shadow-2xl border-t-4 border-yellow-400">
-                            <div class="w-16 h-16 bg-yellow-400/20 text-yellow-400 rounded-full flex items-center justify-center mb-4">
-                                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 10l-2 1m0 0l-2-1m2 1v2.5M20 7l-2 1m2-1l-2-1m2 1v2.5M14 4l-2-1-2 1M4 7l2-1M4 7l2 1M4 7v2.5M12 21l-2-1m2 1l2-1m-2 1v-2.5M6 18l-2-1v-2.5M18 18l2-1v-2.5"></path></svg>
+                        <div class="glass-card rounded-3xl p-8 flex flex-col items-center text-center transition-all duration-300 hover:-translate-y-3 hover:shadow-[0_15px_40px_rgba(250,204,21,0.2)] border-t-[3px] border-t-yellow-400 group">
+                            <div class="w-20 h-20 bg-gradient-to-br from-yellow-400/20 to-yellow-600/20 border border-yellow-400/30 text-yellow-400 rounded-2xl flex items-center justify-center mb-6 shadow-[0_0_20px_rgba(250,204,21,0.15)] group-hover:scale-110 transition-transform">
+                                <svg class="w-10 h-10 drop-shadow-[0_0_8px_rgba(250,204,21,0.5)]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 10l-2 1m0 0l-2-1m2 1v2.5M20 7l-2 1m2-1l-2-1m2 1v2.5M14 4l-2-1-2 1M4 7l2-1M4 7l2 1M4 7v2.5M12 21l-2-1m2 1l2-1m-2 1v-2.5M6 18l-2-1v-2.5M18 18l2-1v-2.5"></path></svg>
                             </div>
-                            <h3 class="text-xl font-bold mb-2">JavaScript Programs</h3>
-                            <p class="text-gray-400 mb-2 text-sm flex-grow">DOM manipulation, algorithms, events, and fully functional mini-projects.</p>
-                            <p class="text-xs text-yellow-400 font-bold mb-4">${programsData.javascript.length} Projects</p>
-                            <button onclick="navigate('category', 'javascript')" class="w-full py-2 bg-yellow-500 hover:bg-yellow-600 text-gray-900 font-bold rounded-lg transition-colors">View Programs</button>
+                            <h3 class="text-2xl font-bold mb-3 text-white">JavaScript</h3>
+                            <p class="text-blue-100/60 mb-6 text-sm flex-grow leading-relaxed">DOM manipulation, algorithms, events, and fully functional projects.</p>
+                            <button onclick="navigate('category', 'javascript')" class="w-full py-3 bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-300 hover:to-yellow-400 text-gray-900 font-bold rounded-xl transition-all shadow-[0_4px_15px_rgba(250,204,21,0.4)]">View ${programsData.javascript.length} Projects</button>
+                        </div>
+
+                        <!-- Node.js Card -->
+                        <div class="glass-card rounded-3xl p-8 flex flex-col items-center text-center transition-all duration-300 hover:-translate-y-3 hover:shadow-[0_15px_40px_rgba(34,197,94,0.2)] border-t-[3px] border-t-green-500 group">
+                            <div class="w-20 h-20 bg-gradient-to-br from-green-400/20 to-green-600/20 border border-green-500/30 text-green-400 rounded-2xl flex items-center justify-center mb-6 shadow-[0_0_20px_rgba(34,197,94,0.15)] group-hover:scale-110 transition-transform">
+                                <svg class="w-10 h-10 drop-shadow-[0_0_8px_rgba(34,197,94,0.5)]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01"></path></svg>
+                            </div>
+                            <h3 class="text-2xl font-bold mb-3 text-white">Node.js</h3>
+                            <p class="text-blue-100/60 mb-6 text-sm flex-grow leading-relaxed">Backend setup, Express, routing, REST APIs, and Databases.</p>
+                            <button onclick="navigate('category', 'nodejs')" class="w-full py-3 bg-gradient-to-r from-green-500 to-green-600 hover:from-green-400 hover:to-green-500 text-white font-bold rounded-xl transition-all shadow-[0_4px_15px_rgba(34,197,94,0.4)]">View ${programsData.nodejs.length} Projects</button>
                         </div>
                     </div>
                 </div>
@@ -532,35 +945,40 @@
         function renderCategoryList(category) {
             const list = programsData[category];
             const titleMap = {
-                'html': { title: 'HTML Programs', color: 'text-orange-500' },
-                'css': { title: 'CSS Programs', color: 'text-blue-500' },
-                'javascript': { title: 'JavaScript Programs', color: 'text-yellow-400' }
+                'html': { title: 'HTML Programs', color: 'text-orange-400', shadow: 'drop-shadow-[0_0_8px_rgba(249,115,22,0.5)]' },
+                'css': { title: 'CSS Programs', color: 'text-blue-400', shadow: 'drop-shadow-[0_0_8px_rgba(59,130,246,0.5)]' },
+                'javascript': { title: 'JavaScript Programs', color: 'text-yellow-400', shadow: 'drop-shadow-[0_0_8px_rgba(250,204,21,0.5)]' },
+                'nodejs': { title: 'Node.js Programs', color: 'text-green-400', shadow: 'drop-shadow-[0_0_8px_rgba(34,197,94,0.5)]' }
             };
 
             let listHTML = `
                 <div class="animate-fade-in max-w-7xl mx-auto">
-                    <div class="flex items-center justify-between mb-8">
+                    <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-10 gap-4 glass-card p-6 rounded-2xl">
                         <div class="flex items-center">
-                            <button onclick="navigate('home')" class="mr-4 p-2 bg-gray-800 hover:bg-gray-700 rounded-full transition-colors text-gray-300">
+                            <button onclick="navigate('home')" class="glass-button mr-5 p-3 rounded-xl text-white">
                                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
                             </button>
-                            <h2 class="text-3xl font-bold ${titleMap[category].color}">${titleMap[category].title}</h2>
+                            <h2 class="text-3xl md:text-4xl font-extrabold ${titleMap[category].color} ${titleMap[category].shadow}">${titleMap[category].title}</h2>
                         </div>
-                        <span class="text-sm bg-gray-800 px-4 py-2 rounded-full text-gray-300 border border-gray-700">${list.length} Programs Loaded</span>
+                        <span class="text-sm glass-inner px-5 py-2.5 rounded-full text-white font-semibold flex items-center shadow-[0_0_15px_rgba(0,0,0,0.3)]">
+                            <div class="w-2 h-2 rounded-full bg-blue-400 mr-2"></div>
+                            ${list.length} Loaded
+                        </span>
                     </div>
                     
-                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             `;
 
             list.forEach((prog, idx) => {
                 listHTML += `
-                    <div onclick='openProgram("${category}", "${prog.id}")' class="glass-card p-5 rounded-xl border border-gray-700 hover:border-gray-500 cursor-pointer transition-all hover:shadow-[0_0_15px_rgba(255,255,255,0.1)] group flex flex-col h-full">
-                        <div class="flex justify-between items-start mb-2">
-                            <span class="text-xs font-mono text-gray-500">#${idx+1}</span>
+                    <div onclick='openProgram("${category}", "${prog.id}")' class="glass-card p-6 rounded-2xl cursor-pointer transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_10px_30px_rgba(255,255,255,0.1)] group flex flex-col h-full border-t border-l border-white/10 hover:border-white/30 relative overflow-hidden">
+                        <div class="absolute -right-6 -top-6 w-24 h-24 bg-white/5 rounded-full blur-xl group-hover:bg-white/10 transition-all"></div>
+                        <div class="flex justify-between items-start mb-4">
+                            <span class="text-xs font-mono text-blue-300 bg-blue-900/40 px-2 py-1 rounded-md border border-blue-400/20 shadow-inner">Task #${idx+1}</span>
                         </div>
-                        <h4 class="font-bold text-[15px] mb-2 group-hover:text-white text-gray-200 leading-tight">${prog.title}</h4>
-                        <div class="mt-auto pt-4 flex justify-end">
-                            <span class="text-[11px] font-semibold bg-gray-800 group-hover:bg-gray-700 text-gray-300 px-2 py-1 rounded transition-colors">View Solution &rarr;</span>
+                        <h4 class="font-bold text-[16px] mb-4 text-gray-100 group-hover:text-white leading-snug drop-shadow-sm">${prog.title}</h4>
+                        <div class="mt-auto pt-4 flex justify-end relative z-10">
+                            <span class="text-xs font-bold glass-button px-4 py-2 rounded-lg text-white transition-all group-hover:bg-white/10 group-hover:shadow-[0_0_15px_rgba(255,255,255,0.2)]">Open &rarr;</span>
                         </div>
                     </div>
                 `;
@@ -581,59 +999,61 @@
 
         function renderProgramViewer(program) {
             appContainer.innerHTML = `
-                <div class="animate-fade-in max-w-5xl mx-auto flex flex-col h-full min-h-[75vh]">
+                <div class="animate-fade-in max-w-6xl mx-auto flex flex-col h-full min-h-[80vh]">
                     <!-- Header -->
-                    <div class="flex items-start sm:items-center justify-between flex-col sm:flex-row mb-6 pb-4 border-b border-gray-700 gap-4">
-                        <div>
-                            <div class="flex items-center text-sm text-gray-400 mb-2 space-x-2">
-                                <button onclick="navigate('home')" class="hover:text-white transition-colors">Home</button>
+                    <div class="glass-card p-6 rounded-3xl mb-8 flex items-start sm:items-center justify-between flex-col sm:flex-row gap-6 relative overflow-hidden">
+                        <div class="absolute -left-10 top-0 w-40 h-40 bg-white/5 rounded-full blur-3xl"></div>
+                        <div class="relative z-10 w-full sm:w-auto">
+                            <div class="flex items-center text-sm text-blue-200/60 mb-3 space-x-3 font-medium">
+                                <button onclick="navigate('home')" class="hover:text-white transition-colors flex items-center">
+                                    <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
+                                </button>
                                 <span>/</span>
-                                <button onclick="navigate('category', '${getCategoryFromId(program.id)}')" class="hover:text-white transition-colors capitalize">${getCategoryFromId(program.id)}</button>
+                                <button onclick="navigate('category', '${getCategoryFromId(program.id)}')" class="hover:text-white transition-colors capitalize px-2 py-1 bg-white/5 rounded-md border border-white/10">${getCategoryFromId(program.id)}</button>
                             </div>
-                            <h2 class="text-2xl sm:text-3xl font-bold text-white">${program.title}</h2>
+                            <h2 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white drop-shadow-md leading-tight">${program.title}</h2>
+                            <p class="text-blue-100/70 mt-3 text-md lg:text-lg max-w-3xl">${program.description}</p>
                         </div>
-                        <button onclick="navigate('category', '${getCategoryFromId(program.id)}')" class="flex-shrink-0 flex items-center px-4 py-2 bg-gray-800 hover:bg-gray-700 text-white rounded-lg transition-colors text-sm font-medium">
+                        <button onclick="navigate('category', '${getCategoryFromId(program.id)}')" class="glass-button flex-shrink-0 flex items-center px-5 py-3 text-white rounded-xl text-sm font-bold w-full sm:w-auto justify-center">
                             <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
-                            Back to List
+                            Back
                         </button>
                     </div>
 
-                    <p class="text-gray-300 mb-6 text-lg">${program.description}</p>
-
                     <!-- Tabs -->
-                    <div class="flex border-b border-gray-700 mb-6 space-x-1 overflow-x-auto">
-                        <button id="tab-code" class="whitespace-nowrap px-6 py-3 bg-gray-800 text-white font-medium rounded-t-lg border-t border-l border-r border-gray-600 relative top-[1px]" onclick="switchTab('code')">
+                    <div class="flex mb-4 space-x-2 overflow-x-auto px-2">
+                        <button id="tab-code" class="whitespace-nowrap px-8 py-3.5 bg-white/10 text-white font-bold rounded-2xl border border-white/20 shadow-[0_4px_15px_rgba(0,0,0,0.2)] backdrop-blur-md transition-all relative top-[2px]" onclick="switchTab('code')">
                             Source Code
                         </button>
-                        <button id="tab-preview" class="whitespace-nowrap px-6 py-3 text-gray-400 hover:text-white font-medium rounded-t-lg transition-colors" onclick="switchTab('preview')">
-                            Working Implementation
+                        <button id="tab-preview" class="whitespace-nowrap px-8 py-3.5 bg-transparent text-blue-100/60 hover:text-white hover:bg-white/5 font-bold rounded-2xl border border-transparent hover:border-white/10 transition-all" onclick="switchTab('preview')">
+                            Live Preview
                         </button>
                     </div>
 
                     <!-- Tab Contents -->
-                    <div class="flex-grow relative glass-card p-6 md:p-8 rounded-b-xl rounded-tr-xl border border-gray-700 min-h-[400px]">
+                    <div class="flex-grow relative glass-card p-4 sm:p-8 rounded-3xl min-h-[450px]">
                         
-                        <!-- Code Panel (Set as default since most are questions) -->
+                        <!-- Code Panel -->
                         <div id="panel-code" class="w-full h-full relative">
                             <div class="absolute top-4 right-4 z-10">
-                                <button onclick="copyCode()" class="bg-gray-700 hover:bg-gray-600 text-white px-3 py-1.5 rounded text-xs transition-colors flex items-center border border-gray-600 shadow">
-                                    <svg class="w-3.5 h-3.5 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+                                <button onclick="copyCode()" class="glass-button text-white px-4 py-2 rounded-lg text-xs font-bold transition-all flex items-center shadow-lg">
+                                    <svg class="w-3.5 h-3.5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
                                     Copy Code
                                 </button>
                             </div>
-                            <pre class="m-0 h-full max-h-[600px] shadow-inner text-sm md:text-base"><code id="code-content">${highlightCode(program.code)}</code></pre>
+                            <!-- Added max height and custom styling to integrate pre into glass look -->
+                            <pre class="m-0 h-full max-h-[600px] border border-white/10 text-sm md:text-base backdrop-blur-md rounded-2xl"><code id="code-content">${highlightCode(program.code)}</code></pre>
                         </div>
 
                         <!-- Preview Panel -->
                         <div id="panel-preview" class="hidden w-full h-full">
-                            <!-- Injected dynamically -->
+                            <!-- Render callback injects here -->
                         </div>
 
                     </div>
                 </div>
             `;
 
-            // Render the live program logic
             const previewPanel = document.getElementById('panel-preview');
             const cleanupFn = program.render(previewPanel);
             
@@ -641,7 +1061,6 @@
                 activeCleanup = cleanupFn;
             }
 
-            // Tab Switch Logic
             window.switchTab = function(tabId) {
                 const btnPreview = document.getElementById('tab-preview');
                 const btnCode = document.getElementById('tab-code');
@@ -649,25 +1068,22 @@
                 const panelCode = document.getElementById('panel-code');
 
                 if (tabId === 'preview') {
-                    btnPreview.classList.add('bg-gray-800', 'text-white', 'border-t', 'border-l', 'border-r', 'border-gray-600', 'relative', 'top-[1px]');
-                    btnPreview.classList.remove('text-gray-400');
-                    btnCode.classList.remove('bg-gray-800', 'text-white', 'border-t', 'border-l', 'border-r', 'border-gray-600', 'relative', 'top-[1px]');
-                    btnCode.classList.add('text-gray-400');
+                    // Activate Preview Tab
+                    btnPreview.className = "whitespace-nowrap px-8 py-3.5 bg-white/10 text-white font-bold rounded-2xl border border-white/20 shadow-[0_4px_15px_rgba(0,0,0,0.2)] backdrop-blur-md transition-all relative top-[2px]";
+                    btnCode.className = "whitespace-nowrap px-8 py-3.5 bg-transparent text-blue-100/60 hover:text-white hover:bg-white/5 font-bold rounded-2xl border border-transparent hover:border-white/10 transition-all";
                     
                     panelPreview.classList.remove('hidden');
                     panelCode.classList.add('hidden');
                 } else {
-                    btnCode.classList.add('bg-gray-800', 'text-white', 'border-t', 'border-l', 'border-r', 'border-gray-600', 'relative', 'top-[1px]');
-                    btnCode.classList.remove('text-gray-400');
-                    btnPreview.classList.remove('bg-gray-800', 'text-white', 'border-t', 'border-l', 'border-r', 'border-gray-600', 'relative', 'top-[1px]');
-                    btnPreview.classList.add('text-gray-400');
+                    // Activate Code Tab
+                    btnCode.className = "whitespace-nowrap px-8 py-3.5 bg-white/10 text-white font-bold rounded-2xl border border-white/20 shadow-[0_4px_15px_rgba(0,0,0,0.2)] backdrop-blur-md transition-all relative top-[2px]";
+                    btnPreview.className = "whitespace-nowrap px-8 py-3.5 bg-transparent text-blue-100/60 hover:text-white hover:bg-white/5 font-bold rounded-2xl border border-transparent hover:border-white/10 transition-all";
                     
                     panelCode.classList.remove('hidden');
                     panelPreview.classList.add('hidden');
                 }
             };
 
-            // Copy to clipboard logic
             window.copyCode = function() {
                 try {
                     const temp = document.createElement('div');
@@ -683,11 +1099,11 @@
                     
                     const btn = document.querySelector('button[onclick="copyCode()"]');
                     const origHtml = btn.innerHTML;
-                    btn.innerHTML = 'Copied!';
-                    btn.classList.add('bg-green-600', 'hover:bg-green-700', 'border-green-500');
+                    btn.innerHTML = '<svg class="w-3.5 h-3.5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Copied!';
+                    btn.classList.add('bg-green-500/30', 'border-green-500/50', 'text-green-100');
                     setTimeout(() => {
                         btn.innerHTML = origHtml;
-                        btn.classList.remove('bg-green-600', 'hover:bg-green-700', 'border-green-500');
+                        btn.classList.remove('bg-green-500/30', 'border-green-500/50', 'text-green-100');
                     }, 2000);
                 } catch(err) {
                     console.error('Failed to copy: ', err);
@@ -700,6 +1116,7 @@
             if(id.startsWith('css')) return 'css';
             if(id.startsWith('js')) return 'javascript';
             if(id.startsWith('javascript')) return 'javascript';
+            if(id.startsWith('nodejs')) return 'nodejs';
             return 'html';
         }
 
